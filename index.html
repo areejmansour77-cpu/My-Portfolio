@@ -8,18 +8,18 @@
 :root{
 --bg:#f8f2e9; --bg2:#efe3d4; --ink:#000; --muted:#7b6b5e;
 --sand:#f7edde; --sand2:#f1e6d6;
---soft:#e3a26f; --soft2:#ffd9bd;
---gold:#8b5e3c;
+--soft:#e3a26f; --soft2:#ffd9bd; /* bars */
+--gold:#8b5e3c; /* mouse glow */
 }
 *{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
-/* Logo */
+/* Logo (top-left) — uses Logo2.png now */
 #logo{position:fixed;top:18px;left:18px;width:160px;height:auto;object-fit:contain;z-index:300;opacity:0;transform:translateY(-6px);transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
 
-/* Watermark (يستخدم Logo2.png من الجذر) */
+/* BIG Watermark (all pages) — uses Logo2.png */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
 .watermark::before{
 content:""; width:min(68vw,820px); height:min(68vw,820px);
@@ -30,7 +30,7 @@ filter:grayscale(40%); opacity:.9;
 /* Wrapper */
 .wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
 
-/* Tabs */
+/* Top menu */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
@@ -119,7 +119,7 @@ transform:rotate(15deg) translateX(-60%);animation:sparkSweep 2.2s linear infini
 @keyframes lbIn{from{transform:scale(.96);opacity:.5}to{transform:scale(1);opacity:1}}
 #lightbox .close{position:fixed;top:18px;right:22px;background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;border:1px solid rgba(0,0,0,.08);cursor:pointer}
 
-/* SKILLS */
+/* SKILLS — icon-first, larger, crisp */
 #tab-skills .grid{grid-template-columns:repeat(6,1fr)}
 .skill{height:150px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:10px;font-weight:800;font-size:14px}
 .skill svg{width:56px;height:56px;display:block}
@@ -131,7 +131,7 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.18);background:linear-gradient(180deg,#fff3e4,#f5e9db)}
 
-/* Intro FX */
+/* Opening FX (ball) */
 #introFx{position:fixed;inset:0;background:linear-gradient(180deg,var(--bg),var(--bg2));display:flex;align-items:center;justify-content:center;z-index:250;overflow:hidden}
 .ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25);
 animation:fallBounce 1.9s cubic-bezier(.28,.9,.26,1.2) forwards,expandScale .9s cubic-bezier(.2,.8,.2,1) 1.6s forwards,fxFade .45s ease 2.35s forwards}
@@ -144,7 +144,7 @@ animation:fallBounce 1.9s cubic-bezier(.28,.9,.26,1.2) forwards,expandScale .9s 
 .stagger{opacity:0;transform:translateY(12px)}
 .stagger.show{opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease}
 
-/* Mouse spark */
+/* Softer mouse spark */
 .spark{position:fixed;pointer-events:none;width:8px;height:8px;border-radius:50%;
 background:radial-gradient(circle, rgba(255,245,230,.78) 0%, rgba(255,245,230,.4) 40%, rgba(139,94,60,.2) 62%, rgba(139,94,60,0) 78%);
 box-shadow:0 0 8px rgba(139,94,60,.35), 0 0 16px rgba(255,220,180,.28);
@@ -157,13 +157,13 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </head>
 <body>
 
-<!-- logo (من الجذر) -->
+<!-- top-left logo (now Logo2.png) -->
 <img id="logo" src="Logo2.png" alt="Logo">
 
-<!-- watermark -->
+<!-- global watermark -->
 <div class="watermark" aria-hidden="true"></div>
 
-<!-- intro -->
+<!-- intro animation -->
 <div id="introFx"><div class="ball"></div></div>
 
 <div class="wrap">
@@ -183,6 +183,7 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </div>
 <div id="hiTitle">Hi!</div>
 <div id="welcomeText">Welcome&nbsp;&nbsp;to&nbsp;&nbsp;my&nbsp;&nbsp;portfolio</div>
+
 <div class="dashboard" style="margin-top:68px">
 <div class="bars">
 <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -191,7 +192,7 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </section>
 
 <!-- ABOUT -->
-<section id="intro">
+<section id="intro" style="display:none;">
 <div class="intro">
 <div class="left">
 <div class="type-lines">
@@ -219,16 +220,17 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
+<!-- CHANGED: CV link to Google Drive direct download -->
 <a class="btn-cv stagger" data-order="7" href="https://drive.google.com/uc?export=download&id=10WSFfG9lWZyWvGu7HA53jtDTDtcEa33D" download>Download CV</a>
 </div>
 </div>
 </section>
 
 <!-- PORTFOLIO -->
-<section id="portfolio">
+<section id="portfolio" style="display:none;">
 <div class="portfolio-nav">
 <div id="pill-projects" class="pill active" data-tab="projects">Projects</div>
-<select id="projSelect" class="proj-select">
+<select id="projSelect" class="proj-select"><!-- يظهر فقط عند Projects -->
 <option value="all" selected>All</option>
 <option value="excel">Excel</option>
 <option value="powerbi">Power BI</option>
@@ -239,7 +241,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="pill" data-tab="skills">Skills</div>
 </div>
 
-<!-- Projects (أسماء دقيقة + امتداد) -->
+<!-- Projects (titles only) -->
 <div id="tab-projects" class="grid">
 <!-- Excel — Future Thinking -->
 <div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="Future Thiking.png">
@@ -255,7 +257,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="overlay"><div class="title">Future Thinking 3</div></div>
 </div>
 
-<!-- Power BI — Quite Power -->
+<!-- Power BI — Quiet Power -->
 <div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="Quite Power 0.png">
 <div class="overlay"><div class="title">Quiet Power 0</div></div>
 </div>
@@ -289,7 +291,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </div>
 
-<!-- Certificates (أسماء دقيقة + امتداد) -->
+<!-- Certificates (PNG titles you gave) -->
 <div id="tab-certificates" class="grid" style="display:none">
 <div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="Business Analysis Fundamentals Certificate.png">
 <div class="overlay"><div class="title">Business Analysis Fundamentals Certificate</div></div>
@@ -308,37 +310,61 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </div>
 
-<!-- Skills -->
+<!-- Skills — icon-first (clean SVGs) -->
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
 <!-- Python -->
-<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/></svg>
+<svg viewBox="0 0 48 48">
+<path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/>
+<circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/>
+</svg>
 <div>Python</div>
 </div>
 <div class="skill">
 <!-- Power BI -->
-<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/><rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/></svg>
+<svg viewBox="0 0 48 48">
+<rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
+<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/>
+<rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/>
+<rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/>
+</svg>
 <div>Power BI</div>
 </div>
 <div class="skill">
 <!-- Excel -->
-<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/><path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/></svg>
+<svg viewBox="0 0 48 48">
+<rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
+<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/>
+</svg>
 <div>Excel</div>
 </div>
 <div class="skill">
 <!-- Tableau -->
-<svg viewBox="0 0 48 48"><g stroke-width="2" stroke-linecap="round"><path d="M24 9v8M20 13h8" stroke="#4E79A7"/><path d="M12 20v6M9 23h6" stroke="#F28E2B"/><path d="M36 20v6M33 23h6" stroke="#59A14F"/><path d="M24 29v8M20 33h8" stroke="#E15759"/></g></svg>
+<svg viewBox="0 0 48 48">
+<g stroke-width="2" stroke-linecap="round">
+<path d="M24 9v8M20 13h8" stroke="#4E79A7"/>
+<path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
+<path d="M36 20v6M33 23h6" stroke="#59A14F"/>
+<path d="M24 29v8M20 33h8" stroke="#E15759"/>
+</g>
+</svg>
 <div>Tableau</div>
 </div>
 <div class="skill">
 <!-- SQL -->
-<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/><path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/></svg>
+<svg viewBox="0 0 48 48">
+<ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
+<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/>
+</svg>
 <div>SQL</div>
 </div>
 <div class="skill">
-<!-- SAP -->
-<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/><text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text></svg>
+<!-- SAP (generic box) -->
+<svg viewBox="0 0 48 48">
+<rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
+<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text>
+</svg>
 <div>SAP</div>
 </div>
 </div>
@@ -346,7 +372,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" style="display:none;">
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
 <a class="cta" href="https://twitter.com/" target="_blank" aria-label="Twitter">
@@ -360,6 +386,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </a>
 </div>
 </section>
+
 </div>
 
 <!-- Lightbox -->
@@ -369,37 +396,40 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 
 <script>
-/* helpers */
-const $ = (q,ctx=document)=>ctx.querySelector(q);
-const $$ = (q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
-
-/* logo + intro overlay */
+/* Show logo after intro + remove overlay */
 window.addEventListener('load',()=>{
-setTimeout(()=>$('#logo')?.classList.add('show'), 1400);
-setTimeout(()=>$('#introFx')?.classList.add('hidden'), 2400);
+setTimeout(()=>document.getElementById('logo').classList.add('show'), 1400);
 });
+setTimeout(()=>{ document.getElementById('introFx').classList.add('hidden'); }, 2400);
 
-/* Tabs switching */
+/* Tabs switching (no scrolling navigation) */
 let currentSection='cover';
 function showSection(id){
 currentSection=id;
-$$('section').forEach(s=>{ s.style.display = (s.id===id)?'':'none'; });
-document.body.style.overflow = (id==='cover') ? 'hidden' : '';
-const ps = $('#projSelect');
-if(!ps) return;
+document.querySelectorAll('section').forEach(s=>s.style.display=(s.id===id)?'':'none');
+
+// Only Home cannot scroll
+if(id==='cover'){
+document.body.style.overflow='hidden';
+}else{
+document.body.style.overflow='';
+}
+
+// portfolio helpers
+const ps=document.getElementById('projSelect');
 if(id!=='portfolio'){ ps.style.display='none'; }
 else { ps.style.display='inline-block'; lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
 }
-$$('.tab').forEach(t=>{
+document.querySelectorAll('.tab').forEach(t=>{
 t.addEventListener('click',()=>{
-$$('.tab').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
 t.classList.add('active');
 showSection(t.dataset.target);
 });
 });
 showSection('cover');
 
-/* منع Scroll على الهوم فقط */
+/* Block wheel / arrows ONLY on Home to keep it fixed; navigate only by menu buttons */
 function blockScrollKeys(e){
 if(currentSection!=='cover') return;
 const keys=['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '];
@@ -409,19 +439,24 @@ function blockWheel(e){ if(currentSection==='cover'){ e.preventDefault(); } }
 window.addEventListener('keydown',blockScrollKeys,{passive:false});
 window.addEventListener('wheel',blockWheel,{passive:false});
 
-/* ABOUT staged reveal + counters */
-try{
-const staged=$$('#intro .stagger');
-const nums=$$('#intro .num');
+/* ABOUT staged reveal + proper counters (0 -> target, smooth & simultaneous) */
+const staged=[...document.querySelectorAll('#intro .stagger')];
+const nums=[...document.querySelectorAll('#intro .num')];
 const io=new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
 if(!entry.isIntersecting) return;
+// staggered content
 staged.forEach((el,i)=> setTimeout(()=>el.classList.add('show'), i*140));
+// counters (each has its own timer)
 nums.forEach(n=>{
-const end=+n.dataset.target||0, start=0, duration=1500, t0=performance.now();
+const end=+n.dataset.target;
+const start=0;
+/* CHANGED: faster numbers */
+const duration=1500; // faster than 2200ms
+const t0=performance.now();
 function step(now){
 const p=Math.min((now-t0)/duration,1);
-const eased=1-Math.pow(1-p,3);
+const eased=1-Math.pow(1-p,3); // easeOutCubic (same easing)
 n.textContent=String(Math.floor(start + eased*(end-start)));
 if(p<1) requestAnimationFrame(step); else n.textContent=end;
 }
@@ -430,85 +465,64 @@ requestAnimationFrame(step);
 io.disconnect();
 });
 },{threshold:.25});
-const introEl = $('#intro');
-if(introEl) io.observe(introEl);
-}catch(e){}
+io.observe(document.querySelector('#intro'));
 
-/* Portfolio tabs + dropdown */
-const pills=$$('.pill');
-const projSelect=$('#projSelect');
+/* Portfolio inner tabs + dropdown filter */
+const pills=[...document.querySelectorAll('.pill')];
+const projSelect=document.getElementById('projSelect');
 function showPortTab(name){
-const tp=$('#tab-projects'), tc=$('#tab-certificates'), ts=$('#tab-skills');
-if(tp) tp.style.display=(name==='projects')?'':'none';
-if(tc) tc.style.display=(name==='certificates')?'':'none';
-if(ts) ts.style.display=(name==='skills')?'':'none';
-if(projSelect) projSelect.style.display = (name==='projects') ? 'inline-block':'none';
+document.getElementById('tab-projects').style.display=(name==='projects')?'':'none';
+document.getElementById('tab-certificates').style.display=(name==='certificates')?'':'none';
+document.getElementById('tab-skills').style.display=(name==='skills')?'':'none';
+projSelect.style.display = (name==='projects') ? 'inline-block':'none';
 if(name==='projects'){ lazySetBG('#tab-projects .card-proj'); }
 if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 }
 pills.forEach(p=>p.addEventListener('click',()=>{ pills.forEach(x=>x.classList.remove('active')); p.classList.add('active'); showPortTab(p.dataset.tab); }));
 showPortTab('projects');
 
-/* filter */
-projSelect?.addEventListener('change',()=>{
+/* filter by dropdown */
+projSelect.addEventListener('change',()=>{
 const val=projSelect.value;
-$$('#tab-projects .card-proj').forEach(c=>{
+document.querySelectorAll('#tab-projects .card-proj').forEach(c=>{
 c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 });
 
-/* ---------- IMAGE LOADER (يجرب imags/ ثم الجذر) ---------- */
-const BASES = ['imags/', '']; // folders to try (images folder, then root)
-const EXTS = ['.png','.jpg','.jpeg','.webp','.gif'];
-
-function buildCandidates(baseName){
-const hasExt = /\.(png|jpg|jpeg|webp|gif)$/i.test(baseName);
-const names = hasExt ? [baseName] : EXTS.map(ext => `${baseName}${ext}`);
-const urls = [];
-for (const b of BASES){
-for (const n of names){
-urls.push(b + n);
+/* Helper: try to resolve image with or without extension (.png/.jpg/.jpeg) */
+function trySrc(base){
+const hasExt=/\.(png|jpg|jpeg|webp|gif)$/i.test(base);
+if(hasExt){ return [base]; }
+return [`${base}.png`,`${base}.jpg`,`${base}.jpeg`];
 }
-}
-return urls.map(u => encodeURI(u));
-}
-
 function lazySetBG(selector){
 document.querySelectorAll(selector).forEach(el=>{
 if(el.dataset.__loaded) return;
-const base = el.getAttribute('data-img');
-if(!base) return;
-const candidates = buildCandidates(base);
+const base=el.getAttribute('data-img');
+const candidates=trySrc(base).map(s=>encodeURI(s));
 (function tryNext(i){
-if(i >= candidates.length){
-console.warn('Image not found for:', base, 'Tried:', candidates);
-return;
-}
-const url = candidates[i];
-const img = new Image();
-img.onload = ()=>{
-el.style.backgroundImage = `url('${url}')`;
-el.dataset.__loaded = "1";
-};
-img.onerror = ()=> tryNext(i+1);
-img.src = url;
+if(i>=candidates.length){ return; }
+const url=candidates[i];
+const img=new Image();
+img.onload=()=>{ el.style.backgroundImage=`url('${url}')`; el.dataset.__loaded="1"; };
+img.onerror=()=>tryNext(i+1);
+img.src=url;
 })(0);
 });
 }
 
-/* Lightbox */
-const lb=$('#lightbox'); const lbImg=lb?.querySelector('img'); const lbClose=lb?.querySelector('.close');
-function openLB(src){ if(!lb||!lbImg) return; lb.style.display='flex'; lbImg.src=src; }
-function closeLB(){ if(!lb||!lbImg) return; lb.style.display='none'; lbImg.src=""; }
-lbClose?.addEventListener('click',closeLB);
-lb?.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+/* Lightbox for Projects & Certificates */
+const lb=document.getElementById('lightbox'); const lbImg=lb.querySelector('img'); const lbClose=lb.querySelector('.close');
+function openLB(src){ lb.style.display='flex'; lbImg.src=src; }
+function closeLB(){ lb.style.display='none'; lbImg.src=""; }
+lbClose.addEventListener('click',closeLB);
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
 window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLB(); });
 
 function attachLightbox(sel){
-$$(sel).forEach(card=>{
+document.querySelectorAll(sel).forEach(card=>{
 card.addEventListener('click',()=>{
-const base=card.getAttribute('data-img'); if(!base) return;
-const candidates=buildCandidates(base);
+const base=card.getAttribute('data-img'); const candidates=trySrc(base).map(s=>encodeURI(s));
 (function tryNext(i){
 if(i>=candidates.length){ return; }
 const url=candidates[i]; const img=new Image();
@@ -522,7 +536,7 @@ img.src=url;
 attachLightbox('#tab-projects .card-proj');
 attachLightbox('#tab-certificates .card-cert');
 
-/* Mouse sparkle trail */
+/* Softer mouse sparkle trail */
 let lastSpark=0;
 window.addEventListener('mousemove',e=>{
 const now=performance.now();
