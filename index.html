@@ -8,29 +8,29 @@
 :root{
 --bg:#f8f2e9; --bg2:#efe3d4; --ink:#000; --muted:#7b6b5e;
 --sand:#f7edde; --sand2:#f1e6d6;
---soft:#e3a26f; --soft2:#ffd9bd;
---gold:#8b5e3c;
+--soft:#e3a26f; --soft2:#ffd9bd; /* bars */
+--gold:#8b5e3c; /* mouse glow */
 }
 *{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
-/* Logo */
+/* Logo (top-left) — from imags/ */
 #logo{position:fixed;top:18px;left:18px;width:160px;height:auto;object-fit:contain;z-index:300;opacity:0;transform:translateY(-6px);transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
 
-/* Watermark (يستخدم Logo2.png من الجذر) */
+/* BIG Watermark (all pages) — from imags/ */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
 .watermark::before{
 content:""; width:min(68vw,820px); height:min(68vw,820px);
-background:url('Logo2.png') center/contain no-repeat;
+background:url('imags/Logo2.png') center/contain no-repeat;
 filter:grayscale(40%); opacity:.9;
 }
 
 /* Wrapper */
 .wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
 
-/* Tabs */
+/* Top menu */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
@@ -119,7 +119,7 @@ transform:rotate(15deg) translateX(-60%);animation:sparkSweep 2.2s linear infini
 @keyframes lbIn{from{transform:scale(.96);opacity:.5}to{transform:scale(1);opacity:1}}
 #lightbox .close{position:fixed;top:18px;right:22px;background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;border:1px solid rgba(0,0,0,.08);cursor:pointer}
 
-/* SKILLS */
+/* SKILLS — icon-first */
 #tab-skills .grid{grid-template-columns:repeat(6,1fr)}
 .skill{height:150px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:10px;font-weight:800;font-size:14px}
 .skill svg{width:56px;height:56px;display:block}
@@ -131,7 +131,7 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.18);background:linear-gradient(180deg,#fff3e4,#f5e9db)}
 
-/* Intro FX */
+/* Opening FX (ball) */
 #introFx{position:fixed;inset:0;background:linear-gradient(180deg,var(--bg),var(--bg2));display:flex;align-items:center;justify-content:center;z-index:250;overflow:hidden}
 .ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25);
 animation:fallBounce 1.9s cubic-bezier(.28,.9,.26,1.2) forwards,expandScale .9s cubic-bezier(.2,.8,.2,1) 1.6s forwards,fxFade .45s ease 2.35s forwards}
@@ -144,7 +144,7 @@ animation:fallBounce 1.9s cubic-bezier(.28,.9,.26,1.2) forwards,expandScale .9s 
 .stagger{opacity:0;transform:translateY(12px)}
 .stagger.show{opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease}
 
-/* Mouse spark */
+/* Softer mouse spark */
 .spark{position:fixed;pointer-events:none;width:8px;height:8px;border-radius:50%;
 background:radial-gradient(circle, rgba(255,245,230,.78) 0%, rgba(255,245,230,.4) 40%, rgba(139,94,60,.2) 62%, rgba(139,94,60,0) 78%);
 box-shadow:0 0 8px rgba(139,94,60,.35), 0 0 16px rgba(255,220,180,.28);
@@ -157,13 +157,13 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </head>
 <body>
 
-<!-- logo (من الجذر) -->
-<img id="logo" src="Logo2.png" alt="Logo">
+<!-- top-left logo -->
+<img id="logo" src="imags/Logo2.png" alt="Logo">
 
-<!-- watermark -->
+<!-- global watermark -->
 <div class="watermark" aria-hidden="true"></div>
 
-<!-- intro -->
+<!-- intro animation -->
 <div id="introFx"><div class="ball"></div></div>
 
 <div class="wrap">
@@ -183,6 +183,7 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </div>
 <div id="hiTitle">Hi!</div>
 <div id="welcomeText">Welcome&nbsp;&nbsp;to&nbsp;&nbsp;my&nbsp;&nbsp;portfolio</div>
+
 <div class="dashboard" style="margin-top:68px">
 <div class="bars">
 <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -191,7 +192,7 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </section>
 
 <!-- ABOUT -->
-<section id="intro">
+<section id="intro" style="display:none;">
 <div class="intro">
 <div class="left">
 <div class="type-lines">
@@ -225,7 +226,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </section>
 
 <!-- PORTFOLIO -->
-<section id="portfolio">
+<section id="portfolio" style="display:none;">
 <div class="portfolio-nav">
 <div id="pill-projects" class="pill active" data-tab="projects">Projects</div>
 <select id="projSelect" class="proj-select">
@@ -239,73 +240,37 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="pill" data-tab="skills">Skills</div>
 </div>
 
-<!-- Projects (أسماء دقيقة + امتداد) -->
+<!-- Projects -->
 <div id="tab-projects" class="grid">
-<!-- Excel — Future Thinking -->
-<div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="Future Thiking.png">
-<div class="overlay"><div class="title">Future Thiking</div></div>
-</div>
-<div class="card-proj" data-type="excel" data-title="Future Thinking 1" data-img="Future Thinking 1.png">
-<div class="overlay"><div class="title">Future Thinking 1</div></div>
-</div>
-<div class="card-proj" data-type="excel" data-title="Future Thinking 2" data-img="Future Thinking 2.png">
-<div class="overlay"><div class="title">Future Thinking 2</div></div>
-</div>
-<div class="card-proj" data-type="excel" data-title="Future Thinking 3" data-img="Future Thinking 3.png">
-<div class="overlay"><div class="title">Future Thinking 3</div></div>
-</div>
+<!-- Excel -->
+<div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="Future Thiking"><div class="overlay"><div class="title">Future Thiking</div></div></div>
+<div class="card-proj" data-type="excel" data-title="Future Thinking 1" data-img="Future Thinking 1"><div class="overlay"><div class="title">Future Thinking 1</div></div></div>
+<div class="card-proj" data-type="excel" data-title="Future Thinking 2" data-img="Future Thinking 2"><div class="overlay"><div class="title">Future Thinking 2</div></div></div>
+<div class="card-proj" data-type="excel" data-title="Future Thinking 3" data-img="Future Thinking 3"><div class="overlay"><div class="title">Future Thinking 3</div></div></div>
 
-<!-- Power BI — Quite Power -->
-<div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="Quite Power 0.png">
-<div class="overlay"><div class="title">Quiet Power 0</div></div>
-</div>
-<div class="card-proj" data-type="powerbi" data-title="Quiet Power 1" data-img="Quite Power 1.png">
-<div class="overlay"><div class="title">Quiet Power 1</div></div>
-</div>
-<div class="card-proj" data-type="powerbi" data-title="Quiet Power 2" data-img="Quite Power 2.png">
-<div class="overlay"><div class="title">Quiet Power 2</div></div>
-</div>
+<!-- Power BI -->
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="Quite Power 0"><div class="overlay"><div class="title">Quiet Power 0</div></div></div>
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 1" data-img="Quite Power 1"><div class="overlay"><div class="title">Quiet Power 1</div></div></div>
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 2" data-img="Quite Power 2"><div class="overlay"><div class="title">Quiet Power 2</div></div></div>
 
 <!-- Tableau -->
-<div class="card-proj" data-type="tableau" data-title="Employee Burnout & Mental Health 1" data-img="The Impact of Employee Burnout on Mental Health 1.png">
-<div class="overlay"><div class="title">The Impact of Employee Burnout on Mental Health 1</div></div>
-</div>
-<div class="card-proj" data-type="tableau" data-title="Sales Dashboard" data-img="Sales Dashboard.png">
-<div class="overlay"><div class="title">Sales Dashboard</div></div>
-</div>
-<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 1" data-img="Sales Dashboard 1.png">
-<div class="overlay"><div class="title">Sales Dashboard 1</div></div>
-</div>
-<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 2" data-img="Sales Dashboard 2.png">
-<div class="overlay"><div class="title">Sales Dashboard 2</div></div>
-</div>
+<div class="card-proj" data-type="tableau" data-title="Employee Burnout & Mental Health 1" data-img="The Impact of Employee Burnout on Mental Health 1"><div class="overlay"><div class="title">Employee Burnout</div></div></div>
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard" data-img="Sales Dashboard"><div class="overlay"><div class="title">Sales Dashboard</div></div></div>
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 1" data-img="Sales Dashboard 1"><div class="overlay"><div class="title">Sales Dashboard 1</div></div></div>
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 2" data-img="Sales Dashboard 2"><div class="overlay"><div class="title">Sales Dashboard 2</div></div></div>
 
 <!-- Python -->
-<div class="card-proj" data-type="python" data-title="Python 1" data-img="Python 1.jpeg">
-<div class="overlay"><div class="title">Python 1</div></div>
-</div>
-<div class="card-proj" data-type="python" data-title="Python 2" data-img="Python 2.jpeg">
-<div class="overlay"><div class="title">Python 2</div></div>
-</div>
+<div class="card-proj" data-type="python" data-title="Python 1" data-img="Python 1"><div class="overlay"><div class="title">Python 1</div></div></div>
+<div class="card-proj" data-type="python" data-title="Python 2" data-img="Python 2"><div class="overlay"><div class="title">Python 2</div></div></div>
 </div>
 
-<!-- Certificates (أسماء دقيقة + امتداد) -->
+<!-- Certificates -->
 <div id="tab-certificates" class="grid" style="display:none">
-<div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="Business Analysis Fundamentals Certificate.png">
-<div class="overlay"><div class="title">Business Analysis Fundamentals Certificate</div></div>
-</div>
-<div class="card-cert" data-title="BIDA" data-img="BIDA.png">
-<div class="overlay"><div class="title">BIDA</div></div>
-</div>
-<div class="card-cert" data-title="GIB" data-img="GIB.png">
-<div class="overlay"><div class="title">GIB</div></div>
-</div>
-<div class="card-cert" data-title="HRDF" data-img="HRDF.png">
-<div class="overlay"><div class="title">HRDF</div></div>
-</div>
-<div class="card-cert" data-title="IAU" data-img="IAU.png">
-<div class="overlay"><div class="title">IAU</div></div>
-</div>
+<div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="Business Analysis Fundamentals Certificate"><div class="overlay"><div class="title">Business Analysis Fundamentals</div></div></div>
+<div class="card-cert" data-title="BIDA" data-img="BIDA"><div class="overlay"><div class="title">BIDA</div></div></div>
+<div class="card-cert" data-title="GIB" data-img="GIB"><div class="overlay"><div class="title">GIB</div></div></div>
+<div class="card-cert" data-title="HRDF" data-img="HRDF"><div class="overlay"><div class="title">HRDF</div></div></div>
+<div class="card-cert" data-title="IAU" data-img="IAU"><div class="overlay"><div class="title">IAU</div></div></div>
 </div>
 
 <!-- Skills -->
@@ -346,7 +311,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" style="display:none;">
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
 <a class="cta" href="https://twitter.com/" target="_blank" aria-label="Twitter">
@@ -360,6 +325,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </a>
 </div>
 </section>
+
 </div>
 
 <!-- Lightbox -->
@@ -369,37 +335,34 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 
 <script>
-/* helpers */
-const $ = (q,ctx=document)=>ctx.querySelector(q);
-const $$ = (q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
-
-/* logo + intro overlay */
+/* Show logo after intro + remove overlay */
 window.addEventListener('load',()=>{
-setTimeout(()=>$('#logo')?.classList.add('show'), 1400);
-setTimeout(()=>$('#introFx')?.classList.add('hidden'), 2400);
+setTimeout(()=>document.getElementById('logo').classList.add('show'), 1400);
 });
+setTimeout(()=>{ document.getElementById('introFx').classList.add('hidden'); }, 2400);
 
 /* Tabs switching */
 let currentSection='cover';
 function showSection(id){
 currentSection=id;
-$$('section').forEach(s=>{ s.style.display = (s.id===id)?'':'none'; });
-document.body.style.overflow = (id==='cover') ? 'hidden' : '';
-const ps = $('#projSelect');
-if(!ps) return;
+document.querySelectorAll('section').forEach(s=>s.style.display=(s.id===id)?'':'none');
+// lock scroll only on Home
+if(id==='cover'){ document.body.style.overflow='hidden'; } else { document.body.style.overflow=''; }
+// lazy load when needed
+const ps=document.getElementById('projSelect');
 if(id!=='portfolio'){ ps.style.display='none'; }
 else { ps.style.display='inline-block'; lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
 }
-$$('.tab').forEach(t=>{
+document.querySelectorAll('.tab').forEach(t=>{
 t.addEventListener('click',()=>{
-$$('.tab').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
 t.classList.add('active');
 showSection(t.dataset.target);
 });
 });
 showSection('cover');
 
-/* منع Scroll على الهوم فقط */
+/* Block scroll on Home */
 function blockScrollKeys(e){
 if(currentSection!=='cover') return;
 const keys=['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '];
@@ -410,15 +373,16 @@ window.addEventListener('keydown',blockScrollKeys,{passive:false});
 window.addEventListener('wheel',blockWheel,{passive:false});
 
 /* ABOUT staged reveal + counters */
-try{
-const staged=$$('#intro .stagger');
-const nums=$$('#intro .num');
+const staged=[...document.querySelectorAll('#intro .stagger')];
+const nums=[...document.querySelectorAll('#intro .num')];
 const io=new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
 if(!entry.isIntersecting) return;
+// stagger in
 staged.forEach((el,i)=> setTimeout(()=>el.classList.add('show'), i*140));
+// counters
 nums.forEach(n=>{
-const end=+n.dataset.target||0, start=0, duration=1500, t0=performance.now();
+const end=+n.dataset.target; const start=0; const duration=1500; const t0=performance.now();
 function step(now){
 const p=Math.min((now-t0)/duration,1);
 const eased=1-Math.pow(1-p,3);
@@ -430,88 +394,75 @@ requestAnimationFrame(step);
 io.disconnect();
 });
 },{threshold:.25});
-const introEl = $('#intro');
-if(introEl) io.observe(introEl);
-}catch(e){}
+io.observe(document.querySelector('#intro'));
 
-/* Portfolio tabs + dropdown */
-const pills=$$('.pill');
-const projSelect=$('#projSelect');
+/* Portfolio tabs + filter */
+const pills=[...document.querySelectorAll('.pill')];
+const projSelect=document.getElementById('projSelect');
 function showPortTab(name){
-const tp=$('#tab-projects'), tc=$('#tab-certificates'), ts=$('#tab-skills');
-if(tp) tp.style.display=(name==='projects')?'':'none';
-if(tc) tc.style.display=(name==='certificates')?'':'none';
-if(ts) ts.style.display=(name==='skills')?'':'none';
-if(projSelect) projSelect.style.display = (name==='projects') ? 'inline-block':'none';
+document.getElementById('tab-projects').style.display=(name==='projects')?'':'none';
+document.getElementById('tab-certificates').style.display=(name==='certificates')?'':'none';
+document.getElementById('tab-skills').style.display=(name==='skills')?'':'none';
+projSelect.style.display = (name==='projects') ? 'inline-block':'none';
 if(name==='projects'){ lazySetBG('#tab-projects .card-proj'); }
 if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 }
 pills.forEach(p=>p.addEventListener('click',()=>{ pills.forEach(x=>x.classList.remove('active')); p.classList.add('active'); showPortTab(p.dataset.tab); }));
 showPortTab('projects');
 
-/* filter */
-projSelect?.addEventListener('change',()=>{
+/* Filter by dropdown */
+projSelect.addEventListener('change',()=>{
 const val=projSelect.value;
-$$('#tab-projects .card-proj').forEach(c=>{
+document.querySelectorAll('#tab-projects .card-proj').forEach(c=>{
 c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 });
 
-/* ---------- IMAGE LOADER (يجرب imags/ ثم الجذر) ---------- */
-const BASES = ['imags/', '']; // folders to try (images folder, then root)
-const EXTS = ['.png','.jpg','.jpeg','.webp','.gif'];
-
-function buildCandidates(baseName){
-const hasExt = /\.(png|jpg|jpeg|webp|gif)$/i.test(baseName);
-const names = hasExt ? [baseName] : EXTS.map(ext => `${baseName}${ext}`);
-const urls = [];
-for (const b of BASES){
-for (const n of names){
-urls.push(b + n);
+/* ---------- IMAGE LOADER (imags/ + URL encoding for spaces) ---------- */
+const IMAGE_BASE = 'imags/';
+function trySrc(base){
+// if base already has an extension, respect it
+const hasExt=/\.(png|jpg|jpeg|webp|gif)$/i.test(base);
+if(hasExt){ return [base]; }
+return [`${base}.png`, `${base}.jpg`, `${base}.jpeg`, `${base}.webp`, `${base}.gif`];
 }
+function toURL(nameWithMaybeExt){
+// Encode the filename safely (handles spaces and non-ASCII)
+return IMAGE_BASE + encodeURIComponent(nameWithMaybeExt);
 }
-return urls.map(u => encodeURI(u));
-}
-
 function lazySetBG(selector){
 document.querySelectorAll(selector).forEach(el=>{
 if(el.dataset.__loaded) return;
-const base = el.getAttribute('data-img');
-if(!base) return;
-const candidates = buildCandidates(base);
+const base=el.getAttribute('data-img'); // e.g. "Future Thinking 1"
+const candidates=trySrc(base).map(toURL); // => imags/Future%20Thinking%201.png, ...
 (function tryNext(i){
-if(i >= candidates.length){
-console.warn('Image not found for:', base, 'Tried:', candidates);
-return;
-}
-const url = candidates[i];
-const img = new Image();
-img.onload = ()=>{
-el.style.backgroundImage = `url('${url}')`;
-el.dataset.__loaded = "1";
-};
-img.onerror = ()=> tryNext(i+1);
-img.src = url;
+if(i>=candidates.length){ return; }
+const url=candidates[i];
+const img=new Image();
+img.onload=()=>{ el.style.backgroundImage=`url('${url}')`; el.dataset.__loaded="1"; };
+img.onerror=()=>tryNext(i+1);
+img.src=url;
 })(0);
 });
 }
 
-/* Lightbox */
-const lb=$('#lightbox'); const lbImg=lb?.querySelector('img'); const lbClose=lb?.querySelector('.close');
-function openLB(src){ if(!lb||!lbImg) return; lb.style.display='flex'; lbImg.src=src; }
-function closeLB(){ if(!lb||!lbImg) return; lb.style.display='none'; lbImg.src=""; }
-lbClose?.addEventListener('click',closeLB);
-lb?.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+/* Lightbox for Projects & Certificates */
+const lb=document.getElementById('lightbox'); const lbImg=lb.querySelector('img'); const lbClose=lb.querySelector('.close');
+function openLB(src){ lb.style.display='flex'; lbImg.src=src; }
+function closeLB(){ lb.style.display='none'; lbImg.src=""; }
+lbClose.addEventListener('click',closeLB);
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
 window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLB(); });
 
 function attachLightbox(sel){
-$$(sel).forEach(card=>{
+document.querySelectorAll(sel).forEach(card=>{
 card.addEventListener('click',()=>{
-const base=card.getAttribute('data-img'); if(!base) return;
-const candidates=buildCandidates(base);
+const base=card.getAttribute('data-img');
+const candidates=trySrc(base).map(toURL);
 (function tryNext(i){
 if(i>=candidates.length){ return; }
-const url=candidates[i]; const img=new Image();
+const url=candidates[i];
+const img=new Image();
 img.onload=()=>openLB(url);
 img.onerror=()=>tryNext(i+1);
 img.src=url;
@@ -522,7 +473,7 @@ img.src=url;
 attachLightbox('#tab-projects .card-proj');
 attachLightbox('#tab-certificates .card-cert');
 
-/* Mouse sparkle trail */
+/* Softer mouse sparkle trail */
 let lastSpark=0;
 window.addEventListener('mousemove',e=>{
 const now=performance.now();
@@ -538,4 +489,5 @@ setTimeout(()=>s.remove(),800);
 </script>
 </body>
 </html>
+
 
