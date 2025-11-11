@@ -19,11 +19,11 @@ a{color:inherit;text-decoration:none}
 #logo{position:fixed;top:18px;left:18px;width:160px;height:auto;object-fit:contain;z-index:300;opacity:0;transform:translateY(-6px);transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
 
-/* Watermark */
+/* Watermark (يستخدم Logo2.png من الجذر) */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
 .watermark::before{
 content:""; width:min(68vw,820px); height:min(68vw,820px);
-background:url('imags/Logo2.png') center/contain no-repeat;
+background:url('Logo2.png') center/contain no-repeat;
 filter:grayscale(40%); opacity:.9;
 }
 
@@ -157,8 +157,8 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </head>
 <body>
 
-<!-- logo -->
-<img id="logo" src="imags/Logo2.png" alt="Logo">
+<!-- logo (من الجذر) -->
+<img id="logo" src="Logo2.png" alt="Logo">
 
 <!-- watermark -->
 <div class="watermark" aria-hidden="true"></div>
@@ -175,7 +175,7 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 <button class="tab" data-target="contact" type="button">Contact</button>
 </div>
 
-<!-- HOME (visible by default) -->
+<!-- HOME -->
 <section id="cover">
 <div class="orbs">
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
@@ -190,7 +190,7 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </div>
 </section>
 
-<!-- ABOUT (visible by default to يمنع الاختفاء عند خطأ JS) -->
+<!-- ABOUT -->
 <section id="intro">
 <div class="intro">
 <div class="left">
@@ -224,7 +224,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </section>
 
-<!-- PORTFOLIO (visible by default) -->
+<!-- PORTFOLIO -->
 <section id="portfolio">
 <div class="portfolio-nav">
 <div id="pill-projects" class="pill active" data-tab="projects">Projects</div>
@@ -239,71 +239,71 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="pill" data-tab="skills">Skills</div>
 </div>
 
-<!-- Projects -->
+<!-- Projects (أسماء دقيقة + امتداد) -->
 <div id="tab-projects" class="grid">
 <!-- Excel — Future Thinking -->
-<div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="Future Thiking">
+<div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="Future Thiking.png">
 <div class="overlay"><div class="title">Future Thiking</div></div>
 </div>
-<div class="card-proj" data-type="excel" data-title="Future Thinking 1" data-img="Future Thinking 1">
+<div class="card-proj" data-type="excel" data-title="Future Thinking 1" data-img="Future Thinking 1.png">
 <div class="overlay"><div class="title">Future Thinking 1</div></div>
 </div>
-<div class="card-proj" data-type="excel" data-title="Future Thinking 2" data-img="Future Thinking 2">
+<div class="card-proj" data-type="excel" data-title="Future Thinking 2" data-img="Future Thinking 2.png">
 <div class="overlay"><div class="title">Future Thinking 2</div></div>
 </div>
-<div class="card-proj" data-type="excel" data-title="Future Thinking 3" data-img="Future Thinking 3">
+<div class="card-proj" data-type="excel" data-title="Future Thinking 3" data-img="Future Thinking 3.png">
 <div class="overlay"><div class="title">Future Thinking 3</div></div>
 </div>
 
-<!-- Power BI — Quite Power (مطابقة لأسماء ملفاتك) -->
-<div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="Quite Power 0">
+<!-- Power BI — Quite Power -->
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="Quite Power 0.png">
 <div class="overlay"><div class="title">Quiet Power 0</div></div>
 </div>
-<div class="card-proj" data-type="powerbi" data-title="Quiet Power 1" data-img="Quite Power 1">
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 1" data-img="Quite Power 1.png">
 <div class="overlay"><div class="title">Quiet Power 1</div></div>
 </div>
-<div class="card-proj" data-type="powerbi" data-title="Quiet Power 2" data-img="Quite Power 2">
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 2" data-img="Quite Power 2.png">
 <div class="overlay"><div class="title">Quiet Power 2</div></div>
 </div>
 
 <!-- Tableau -->
-<div class="card-proj" data-type="tableau" data-title="Employee Burnout & Mental Health 1" data-img="The Impact of Employee Burnout on Mental Health 1">
+<div class="card-proj" data-type="tableau" data-title="Employee Burnout & Mental Health 1" data-img="The Impact of Employee Burnout on Mental Health 1.png">
 <div class="overlay"><div class="title">The Impact of Employee Burnout on Mental Health 1</div></div>
 </div>
-<div class="card-proj" data-type="tableau" data-title="Sales Dashboard" data-img="Sales Dashboard">
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard" data-img="Sales Dashboard.png">
 <div class="overlay"><div class="title">Sales Dashboard</div></div>
 </div>
-<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 1" data-img="Sales Dashboard 1">
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 1" data-img="Sales Dashboard 1.png">
 <div class="overlay"><div class="title">Sales Dashboard 1</div></div>
 </div>
-<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 2" data-img="Sales Dashboard 2">
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 2" data-img="Sales Dashboard 2.png">
 <div class="overlay"><div class="title">Sales Dashboard 2</div></div>
 </div>
 
 <!-- Python -->
-<div class="card-proj" data-type="python" data-title="Python 1" data-img="Python 1">
+<div class="card-proj" data-type="python" data-title="Python 1" data-img="Python 1.jpeg">
 <div class="overlay"><div class="title">Python 1</div></div>
 </div>
-<div class="card-proj" data-type="python" data-title="Python 2" data-img="Python 2">
+<div class="card-proj" data-type="python" data-title="Python 2" data-img="Python 2.jpeg">
 <div class="overlay"><div class="title">Python 2</div></div>
 </div>
 </div>
 
-<!-- Certificates -->
+<!-- Certificates (أسماء دقيقة + امتداد) -->
 <div id="tab-certificates" class="grid" style="display:none">
-<div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="Business Analysis Fundamentals Certificate">
+<div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="Business Analysis Fundamentals Certificate.png">
 <div class="overlay"><div class="title">Business Analysis Fundamentals Certificate</div></div>
 </div>
-<div class="card-cert" data-title="BIDA" data-img="BIDA">
+<div class="card-cert" data-title="BIDA" data-img="BIDA.png">
 <div class="overlay"><div class="title">BIDA</div></div>
 </div>
-<div class="card-cert" data-title="GIB" data-img="GIB">
+<div class="card-cert" data-title="GIB" data-img="GIB.png">
 <div class="overlay"><div class="title">GIB</div></div>
 </div>
-<div class="card-cert" data-title="HRDF" data-img="HRDF">
+<div class="card-cert" data-title="HRDF" data-img="HRDF.png">
 <div class="overlay"><div class="title">HRDF</div></div>
 </div>
-<div class="card-cert" data-title="IAU" data-img="IAU">
+<div class="card-cert" data-title="IAU" data-img="IAU.png">
 <div class="overlay"><div class="title">IAU</div></div>
 </div>
 </div>
@@ -345,7 +345,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </section>
 
-<!-- CONTACT (visible by default) -->
+<!-- CONTACT -->
 <section id="contact">
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
@@ -369,7 +369,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 
 <script>
-/* safe helpers */
+/* helpers */
 const $ = (q,ctx=document)=>ctx.querySelector(q);
 const $$ = (q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
 
@@ -379,7 +379,7 @@ setTimeout(()=>$('#logo')?.classList.add('show'), 1400);
 setTimeout(()=>$('#introFx')?.classList.add('hidden'), 2400);
 });
 
-/* Tabs switching (robust even لو ما لقي عنصر) */
+/* Tabs switching */
 let currentSection='cover';
 function showSection(id){
 currentSection=id;
@@ -397,7 +397,6 @@ t.classList.add('active');
 showSection(t.dataset.target);
 });
 });
-/* اجعل الكل ظاهر افتراضيًا، ثم فعّل التبديل */
 showSection('cover');
 
 /* منع Scroll على الهوم فقط */
@@ -410,7 +409,7 @@ function blockWheel(e){ if(currentSection==='cover'){ e.preventDefault(); } }
 window.addEventListener('keydown',blockScrollKeys,{passive:false});
 window.addEventListener('wheel',blockWheel,{passive:false});
 
-/* ABOUT staged reveal + counters (محمي بـ try/catch) */
+/* ABOUT staged reveal + counters */
 try{
 const staged=$$('#intro .stagger');
 const nums=$$('#intro .num');
@@ -433,7 +432,7 @@ io.disconnect();
 },{threshold:.25});
 const introEl = $('#intro');
 if(introEl) io.observe(introEl);
-}catch(e){ /* ignore */ }
+}catch(e){}
 
 /* Portfolio tabs + dropdown */
 const pills=$$('.pill');
@@ -450,7 +449,7 @@ if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 pills.forEach(p=>p.addEventListener('click',()=>{ pills.forEach(x=>x.classList.remove('active')); p.classList.add('active'); showPortTab(p.dataset.tab); }));
 showPortTab('projects');
 
-/* filter by dropdown */
+/* filter */
 projSelect?.addEventListener('change',()=>{
 const val=projSelect.value;
 $$('#tab-projects .card-proj').forEach(c=>{
@@ -458,31 +457,41 @@ c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 });
 
-/* ---------- IMAGE LOADER (uses imags/ folder) ---------- */
-const IMAGE_BASE = 'imags/';
-function trySrc(base){
-const hasExt=/\.(png|jpg|jpeg|webp|gif)$/i.test(base);
-if(hasExt){ return [IMAGE_BASE + base]; }
-return [
-IMAGE_BASE + `${base}.png`,
-IMAGE_BASE + `${base}.jpg`,
-IMAGE_BASE + `${base}.jpeg`,
-IMAGE_BASE + `${base}.webp`,
-IMAGE_BASE + `${base}.gif`,
-];
+/* ---------- IMAGE LOADER (يجرب imags/ ثم الجذر) ---------- */
+const BASES = ['imags/', '']; // folders to try (images folder, then root)
+const EXTS = ['.png','.jpg','.jpeg','.webp','.gif'];
+
+function buildCandidates(baseName){
+const hasExt = /\.(png|jpg|jpeg|webp|gif)$/i.test(baseName);
+const names = hasExt ? [baseName] : EXTS.map(ext => `${baseName}${ext}`);
+const urls = [];
+for (const b of BASES){
+for (const n of names){
+urls.push(b + n);
 }
+}
+return urls.map(u => encodeURI(u));
+}
+
 function lazySetBG(selector){
-$$(selector).forEach(el=>{
+document.querySelectorAll(selector).forEach(el=>{
 if(el.dataset.__loaded) return;
-const base=el.getAttribute('data-img'); if(!base) return;
-const candidates=trySrc(base).map(s=>encodeURI(s));
+const base = el.getAttribute('data-img');
+if(!base) return;
+const candidates = buildCandidates(base);
 (function tryNext(i){
-if(i>=candidates.length){ return; }
-const url=candidates[i];
-const img=new Image();
-img.onload=()=>{ el.style.backgroundImage=`url('${url}')`; el.dataset.__loaded="1"; };
-img.onerror=()=>tryNext(i+1);
-img.src=url;
+if(i >= candidates.length){
+console.warn('Image not found for:', base, 'Tried:', candidates);
+return;
+}
+const url = candidates[i];
+const img = new Image();
+img.onload = ()=>{
+el.style.backgroundImage = `url('${url}')`;
+el.dataset.__loaded = "1";
+};
+img.onerror = ()=> tryNext(i+1);
+img.src = url;
 })(0);
 });
 }
@@ -499,7 +508,7 @@ function attachLightbox(sel){
 $$(sel).forEach(card=>{
 card.addEventListener('click',()=>{
 const base=card.getAttribute('data-img'); if(!base) return;
-const candidates=trySrc(base).map(s=>encodeURI(s));
+const candidates=buildCandidates(base);
 (function tryNext(i){
 if(i>=candidates.length){ return; }
 const url=candidates[i]; const img=new Image();
@@ -529,3 +538,4 @@ setTimeout(()=>s.remove(),800);
 </script>
 </body>
 </html>
+
