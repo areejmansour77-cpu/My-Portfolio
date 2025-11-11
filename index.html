@@ -15,15 +15,15 @@
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
-/* Logo (top-left) — uses Logo2.png now */
+/* Logo (top-left) — NOW FROM imgs/ */
 #logo{position:fixed;top:18px;left:18px;width:160px;height:auto;object-fit:contain;z-index:300;opacity:0;transform:translateY(-6px);transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
 
-/* BIG Watermark (all pages) — uses Logo2.png */
+/* BIG Watermark (all pages) — NOW FROM imgs/ */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
 .watermark::before{
 content:""; width:min(68vw,820px); height:min(68vw,820px);
-background:url('Logo2.png') center/contain no-repeat;
+background:url('imgs/Logo2.png') center/contain no-repeat;
 filter:grayscale(40%); opacity:.9;
 }
 
@@ -157,8 +157,8 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 </head>
 <body>
 
-<!-- top-left logo (now Logo2.png) -->
-<img id="logo" src="Logo2.png" alt="Logo">
+<!-- top-left logo (NOW imgs/Logo2.png) -->
+<img id="logo" src="imgs/Logo2.png" alt="Logo">
 
 <!-- global watermark -->
 <div class="watermark" aria-hidden="true"></div>
@@ -220,7 +220,6 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- CHANGED: CV link to Google Drive direct download -->
 <a class="btn-cv stagger" data-order="7" href="https://drive.google.com/uc?export=download&id=10WSFfG9lWZyWvGu7HA53jtDTDtcEa33D" download>Download CV</a>
 </div>
 </div>
@@ -230,7 +229,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <section id="portfolio" style="display:none;">
 <div class="portfolio-nav">
 <div id="pill-projects" class="pill active" data-tab="projects">Projects</div>
-<select id="projSelect" class="proj-select"><!-- يظهر فقط عند Projects -->
+<select id="projSelect" class="proj-select">
 <option value="all" selected>All</option>
 <option value="excel">Excel</option>
 <option value="powerbi">Power BI</option>
@@ -291,7 +290,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </div>
 
-<!-- Certificates (PNG titles you gave) -->
+<!-- Certificates -->
 <div id="tab-certificates" class="grid" style="display:none">
 <div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="Business Analysis Fundamentals Certificate">
 <div class="overlay"><div class="title">Business Analysis Fundamentals Certificate</div></div>
@@ -310,61 +309,37 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </div>
 
-<!-- Skills — icon-first (clean SVGs) -->
+<!-- Skills -->
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
 <!-- Python -->
-<svg viewBox="0 0 48 48">
-<path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/>
-<circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/>
-</svg>
+<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/></svg>
 <div>Python</div>
 </div>
 <div class="skill">
 <!-- Power BI -->
-<svg viewBox="0 0 48 48">
-<rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
-<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/>
-<rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/>
-<rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/>
-</svg>
+<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/><rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/></svg>
 <div>Power BI</div>
 </div>
 <div class="skill">
 <!-- Excel -->
-<svg viewBox="0 0 48 48">
-<rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
-<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/>
-</svg>
+<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/><path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/></svg>
 <div>Excel</div>
 </div>
 <div class="skill">
 <!-- Tableau -->
-<svg viewBox="0 0 48 48">
-<g stroke-width="2" stroke-linecap="round">
-<path d="M24 9v8M20 13h8" stroke="#4E79A7"/>
-<path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
-<path d="M36 20v6M33 23h6" stroke="#59A14F"/>
-<path d="M24 29v8M20 33h8" stroke="#E15759"/>
-</g>
-</svg>
+<svg viewBox="0 0 48 48"><g stroke-width="2" stroke-linecap="round"><path d="M24 9v8M20 13h8" stroke="#4E79A7"/><path d="M12 20v6M9 23h6" stroke="#F28E2B"/><path d="M36 20v6M33 23h6" stroke="#59A14F"/><path d="M24 29v8M20 33h8" stroke="#E15759"/></g></svg>
 <div>Tableau</div>
 </div>
 <div class="skill">
 <!-- SQL -->
-<svg viewBox="0 0 48 48">
-<ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
-<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/>
-</svg>
+<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/><path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/></svg>
 <div>SQL</div>
 </div>
 <div class="skill">
-<!-- SAP (generic box) -->
-<svg viewBox="0 0 48 48">
-<rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
-<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text>
-</svg>
+<!-- SAP -->
+<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/><text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text></svg>
 <div>SAP</div>
 </div>
 </div>
@@ -408,14 +383,8 @@ function showSection(id){
 currentSection=id;
 document.querySelectorAll('section').forEach(s=>s.style.display=(s.id===id)?'':'none');
 
-// Only Home cannot scroll
-if(id==='cover'){
-document.body.style.overflow='hidden';
-}else{
-document.body.style.overflow='';
-}
+if(id==='cover'){ document.body.style.overflow='hidden'; } else { document.body.style.overflow=''; }
 
-// portfolio helpers
 const ps=document.getElementById('projSelect');
 if(id!=='portfolio'){ ps.style.display='none'; }
 else { ps.style.display='inline-block'; lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
@@ -429,7 +398,7 @@ showSection(t.dataset.target);
 });
 showSection('cover');
 
-/* Block wheel / arrows ONLY on Home to keep it fixed; navigate only by menu buttons */
+/* Block wheel / arrows ONLY on Home */
 function blockScrollKeys(e){
 if(currentSection!=='cover') return;
 const keys=['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '];
@@ -439,24 +408,21 @@ function blockWheel(e){ if(currentSection==='cover'){ e.preventDefault(); } }
 window.addEventListener('keydown',blockScrollKeys,{passive:false});
 window.addEventListener('wheel',blockWheel,{passive:false});
 
-/* ABOUT staged reveal + proper counters (0 -> target, smooth & simultaneous) */
+/* ABOUT staged reveal + counters */
 const staged=[...document.querySelectorAll('#intro .stagger')];
 const nums=[...document.querySelectorAll('#intro .num')];
 const io=new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
 if(!entry.isIntersecting) return;
-// staggered content
 staged.forEach((el,i)=> setTimeout(()=>el.classList.add('show'), i*140));
-// counters (each has its own timer)
 nums.forEach(n=>{
 const end=+n.dataset.target;
 const start=0;
-/* CHANGED: faster numbers */
-const duration=1500; // faster than 2200ms
+const duration=1500;
 const t0=performance.now();
 function step(now){
 const p=Math.min((now-t0)/duration,1);
-const eased=1-Math.pow(1-p,3); // easeOutCubic (same easing)
+const eased=1-Math.pow(1-p,3);
 n.textContent=String(Math.floor(start + eased*(end-start)));
 if(p<1) requestAnimationFrame(step); else n.textContent=end;
 }
@@ -489,11 +455,18 @@ c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 });
 
-/* Helper: try to resolve image with or without extension (.png/.jpg/.jpeg) */
+/* ---------- IMAGE LOADER (uses imgs/ folder) ---------- */
+const IMAGE_BASE = 'imgs/';
 function trySrc(base){
 const hasExt=/\.(png|jpg|jpeg|webp|gif)$/i.test(base);
-if(hasExt){ return [base]; }
-return [`${base}.png`,`${base}.jpg`,`${base}.jpeg`];
+if(hasExt){ return [IMAGE_BASE + base]; }
+return [
+IMAGE_BASE + `${base}.png`,
+IMAGE_BASE + `${base}.jpg`,
+IMAGE_BASE + `${base}.jpeg`,
+IMAGE_BASE + `${base}.webp`,
+IMAGE_BASE + `${base}.gif`,
+];
 }
 function lazySetBG(selector){
 document.querySelectorAll(selector).forEach(el=>{
@@ -552,3 +525,4 @@ setTimeout(()=>s.remove(),800);
 </script>
 </body>
 </html>
+
