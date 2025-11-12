@@ -63,12 +63,11 @@ background:linear-gradient(120deg,rgba(255,255,255,.0),rgba(255,255,255,.5),rgba
 /* ABOUT */
 .intro{display:flex;gap:36px;align-items:flex-start}
 .left{flex:1;padding:22px;min-height:320px;background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.15));border-radius:12px;border:1px solid rgba(0,0,0,.08)}
-/* name/role with animation back */
-.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-34px);animation:nameIn .9s ease-out .2s forwards}
-.role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px;opacity:0;transform:translateX(70px);animation:roleIn .9s ease-out .5s forwards}
-@keyframes nameIn{to{opacity:1;transform:translateY(0)}}
-@keyframes roleIn{to{opacity:1;transform:translateX(0)}}
-
+/* name/role animated in */
+.stagger{opacity:0;transform:translateY(12px)}
+.stagger.show{opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease}
+.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400}
+.role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px}
 .bio{margin-top:16px;color:#6a564b;font-size:17px;line-height:1.6}
 .accent-grad{background:linear-gradient(90deg,#deb27c,#caa077,#b9876a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .btn-cv{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:linear-gradient(180deg,var(--sand),var(--sand2));
@@ -97,10 +96,10 @@ border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative
 #lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 #lightbox .close{position:fixed;top:18px;right:22px;background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;border:1px solid rgba(0,0,0,.08);cursor:pointer}
 
-/* SKILLS (نفس الأيقونات، حجم أصغر) */
+/* SKILLS */
 #tab-skills .grid{grid-template-columns:repeat(6,1fr)}
-.skill{height:130px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:8px;font-weight:800;font-size:13px}
-.skill svg{width:40px;height:40px;display:block}
+.skill{height:150px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:10px;font-weight:800;font-size:14px}
+.skill svg{width:56px;height:56px;display:block}
 
 /* CONTACT */
 .contact-icons{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
@@ -108,25 +107,40 @@ border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative
 background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.18);background:linear-gradient(180deg,#fff3e4,#f5e9db)}
 
-/* Intro overlay (auto-hide) */
-#introFx{position:fixed;inset:0;background:linear-gradient(180deg,var(--bg),var(--bg2));display:flex;align-items:center;justify-content:center;z-index:250;overflow:hidden}
-.ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25)}
+/* Intro overlay + ball animation */
+#introFx{
+position:fixed; inset:0;
+background:linear-gradient(180deg,var(--bg),var(--bg2));
+display:flex; align-items:center; justify-content:center;
+z-index:250; overflow:hidden;
+}
+.ball{
+width:28px; height:28px; border-radius:50%;
+background:#e8dbc8; box-shadow:0 14px 42px rgba(150,120,90,.25);
+animation:drop .9s cubic-bezier(.22,.9,.26,1) forwards,
+ballFade .6s ease-in 1.4s forwards;
+}
+@keyframes drop{
+0% { transform:translateY(-60vh) scale(.85); }
+70% { transform:translateY(0) scale(1.00); }
+85% { transform:translateY(-14px) scale(.98); }
+100% { transform:translateY(0) scale(1.00); }
+}
+@keyframes ballFade{ to { opacity:0; filter:blur(6px); } }
 .hidden{display:none!important}
 
 /* Responsive */
-@media (max-width:1024px){
+@media (max-width:900px){
+#logo{width:140px}
+.tabs{margin-left:120px}
 .grid{grid-template-columns:repeat(2,1fr)}
-#tab-skills .grid{grid-template-columns:repeat(4,1fr)}
-}
-@media (max-width:820px){
-#logo{width:140px}.tabs{margin-left:120px}
+#tab-skills .grid{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:640px){
 #logo{width:120px;left:10px;top:10px}
-.tabs{margin-left:0;flex-wrap:wrap}
+.tabs{margin-left:110px}
 .wrap{padding-top:92px}
 .grid{grid-template-columns:1fr}
-#tab-skills .grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -165,27 +179,27 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 <section id="intro" style="display:none;">
 <div class="intro">
 <div class="left">
-<div class="name" style="text-transform:uppercase;">AREEJ BALHARITH</div>
-<div class="role">DATA ANALYST</div>
+<div class="name stagger" style="text-transform:uppercase;">AREEJ BALHARITH</div>
+<div class="role stagger">DATA ANALYST</div>
 
-<p class="bio">
+<p class="bio stagger">
 Passionate Data Analyst interested in digital transformation and continuous learning.<br>
 I love exploring new tools, technologies, and techniques and bring that curiosity into my work through clean, insightful, and impactful data analysis.
 </p>
 
-<div class="stats">
+<div class="stats stagger">
 <div class="stat"><div class="num">4</div><div class="label">Total projects</div></div>
 <div class="stat"><div class="num">5</div><div class="label">Certificates</div></div>
 <div class="stat"><div class="num">1</div><div class="label">Experience (yrs)</div></div>
 </div>
 
-<p class="bio" style="margin-top:24px;">
+<p class="bio stagger" style="margin-top:24px;">
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- Download CV (Google Drive direct) -->
-<a id="cvLink" class="btn-cv"
-href="https://drive.google.com/uc?export=download&id=10WSFfG9lWZyWvGu7HA53jtDTDtcEa33D"
+<!-- Download CV (Google Drive link) -->
+<a class="btn-cv stagger"
+href="https://drive.google.com/file/d/10WSFfG9lWZyWvGu7HA53jtDTDtcEa33D/view"
 target="_blank" rel="noopener">Download CV</a>
 </div>
 </div>
@@ -275,7 +289,7 @@ target="_blank" rel="noopener">Download CV</a>
 </div>
 </div>
 
-<!-- Skills -->
+<!-- Skills (icons like before) -->
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
@@ -435,16 +449,21 @@ card.addEventListener('click',()=>{ openLB(card.getAttribute('data-img')); });
 attach('#tab-projects .card-proj'); attach('#tab-certificates .card-cert');
 })();
 
-/* About counters animation (سريعة ومريحة) */
-(function counters(){
+/* About: staged reveal (name/role/bio/stats) + counters */
+(function(){
 const section=document.getElementById('intro');
 if(!section) return;
+const staged=[...section.querySelectorAll('.stagger')];
 const nums=[...section.querySelectorAll('.num')];
-if(nums.length===0) return;
 
 const io=new IntersectionObserver((entries)=>{
 entries.forEach(entry=>{
 if(!entry.isIntersecting) return;
+
+// stagger in sequence
+staged.forEach((el,i)=> setTimeout(()=>el.classList.add('show'), i*140));
+
+// animate numbers 0 -> final
 nums.forEach(n=>{
 const end=+n.textContent.trim()||0;
 const start=0;
@@ -459,6 +478,7 @@ if(p<1) requestAnimationFrame(step); else n.textContent=end;
 n.textContent='0';
 requestAnimationFrame(step);
 });
+
 io.disconnect();
 });
 },{threshold:.25});
@@ -467,6 +487,7 @@ io.observe(section);
 </script>
 </body>
 </html>
+
 
 
 
