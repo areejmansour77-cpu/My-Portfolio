@@ -167,8 +167,8 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- Download CV (href يُبنى تلقائيًا) -->
-<a id="cvLink" class="btn-cv" href="#" download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
+<!-- Download CV (يبني الرابط تلقائياً على الاسم الجديد) -->
+<a id="cvLink" class="btn-cv" href="#" download="Areej_Mansour_CV.pdf">Download CV</a>
 </div>
 </div>
 </section>
@@ -393,19 +393,17 @@ card.addEventListener('click',()=>{ openLB(card.getAttribute('data-img')); });
 attach('#tab-projects .card-proj'); attach('#tab-certificates .card-cert');
 })();
 
-/* CV link: يبني الرابط مع ترميز المسافات + يتحقق ويعمل fallback للـ RAW */
+/* CV link: يبني الرابط للاسم الجديد + يتحقق ويعمل fallback للـ RAW */
 (function setupCV(){
 var a = document.getElementById('cvLink');
 if(!a) return;
 
-var fileName = 'Areej Mansour Balharith.pdf';
+var fileName = 'Areej Mansour.pdf'; // <-- الاسم الجديد داخل imags/
 var pagesHref = 'imags/' + encodeURIComponent(fileName);
 var rawHref = 'https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/imags/' + encodeURIComponent(fileName);
 
-// استخدم Pages أولاً (نفس الأصل => download يعمل)
 a.setAttribute('href', pagesHref);
 
-// لو الملف مش متاح (404) حوّل للـ RAW تلقائياً
 fetch(pagesHref, { method: 'HEAD' }).then(function(r){
 if(!r.ok){ a.setAttribute('href', rawHref); }
 }).catch(function(){
