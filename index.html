@@ -8,18 +8,18 @@
 :root{
 --bg:#f8f2e9; --bg2:#efe3d4; --ink:#000; --muted:#7b6b5e;
 --sand:#f7edde; --sand2:#f1e6d6;
---soft:#e3a26f; --soft2:#ffd9bd;
---gold:#8b5e3c;
+--soft:#e3a26f; --soft2:#ffd9bd; /* bars */
+--gold:#8b5e3c; /* mouse glow */
 }
 *{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
-/* Logo top-left */
+/* Logo (top-left) */
 #logo{position:fixed;top:18px;left:18px;width:160px;height:auto;object-fit:contain;z-index:300;opacity:0;transform:translateY(-6px);transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
 
-/* Watermark */
+/* BIG Watermark */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
 .watermark::before{
 content:""; width:min(68vw,820px); height:min(68vw,820px);
@@ -30,7 +30,7 @@ filter:grayscale(40%); opacity:.9;
 /* Wrapper */
 .wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
 
-/* Menu */
+/* Top menu */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
@@ -89,6 +89,7 @@ background:linear-gradient(120deg,rgba(255,255,255,.0),rgba(255,255,255,.5),rgba
 .accent-grad{background:linear-gradient(90deg,#deb27c,#caa077,#b9876a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .btn-cv{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:linear-gradient(180deg,var(--sand),var(--sand2));
 border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12)}
+.btn-cv:hover{transform:translateY(-6px) rotateX(6deg);box-shadow:0 20px 40px rgba(0,0,0,.2);filter:saturate(1.05);background-size:120% 120%}
 .stats{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;opacity:0}
 .stat{flex:1 1 110px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.2));text-align:center;border:1px solid rgba(0,0,0,.08)}
 .stat .num{font-size:28px;font-weight:800;color:#2c221b;margin-bottom:6px}
@@ -110,57 +111,55 @@ border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative
 
 /* Lightbox */
 #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:500}
-#lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+#lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:lbIn .22s ease-out}
+@keyframes lbIn{from{transform:scale(.96);opacity:.5}to{transform:scale(1);opacity:1}}
 #lightbox .close{position:fixed;top:18px;right:22px;background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;border:1px solid rgba(0,0,0,.08);cursor:pointer}
 
-/* SKILLS */
+/* SKILLS — icon-first */
 #tab-skills .grid{grid-template-columns:repeat(6,1fr)}
 .skill{height:150px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:10px;font-weight:800;font-size:14px}
 .skill svg{width:56px;height:56px;display:block}
 
 /* CONTACT */
 .contact-icons{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
-.cta{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
+.cta{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;
+background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
+transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.18);background:linear-gradient(180deg,#fff3e4,#f5e9db)}
 
-/* Intro FX */
+/* Opening FX (ball) */
 #introFx{position:fixed;inset:0;background:linear-gradient(180deg,var(--bg),var(--bg2));display:flex;align-items:center;justify-content:center;z-index:250;overflow:hidden}
 .ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25)}
 
-/* Utilities */
+/* Stagger util */
 .hidden{display:none!important}
 .stagger{opacity:0;transform:translateY(12px)}
 .stagger.show{opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease}
 
-/* Spark mouse */
+/* Softer mouse spark */
 .spark{position:fixed;pointer-events:none;width:8px;height:8px;border-radius:50%;
 background:radial-gradient(circle, rgba(255,245,230,.78) 0%, rgba(255,245,230,.4) 40%, rgba(139,94,60,.2) 62%, rgba(139,94,60,0) 78%);
 box-shadow:0 0 8px rgba(139,94,60,.35), 0 0 16px rgba(255,220,180,.28);
 z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;filter:blur(.2px)}
 @keyframes sparkFade{to{transform:translateY(-8px) scale(1.4);opacity:0}}
 
-@media (max-width:900px){
-#logo{width:140px}
-.tabs{margin-left:120px}
-.grid{grid-template-columns:repeat(2,1fr)}
-#tab-skills .grid{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:640px){
-#logo{width:120px;left:10px;top:10px}
-.tabs{margin-left:110px}
-.wrap{padding-top:92px}
-}
+@media (max-width:900px){#logo{width:140px}.tabs{margin-left:120px}.grid{grid-template-columns:repeat(2,1fr)}#tab-skills .grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){#logo{width:120px;left:10px;top:10px}.tabs{margin-left:110px}.wrap{padding-top:92px}}
 </style>
 </head>
 <body>
 
-<!-- Logo + Watermark + Intro -->
+<!-- top-left logo -->
 <img id="logo" src="imags/Logo2.png" alt="Logo">
+
+<!-- global watermark -->
 <div class="watermark" aria-hidden="true"></div>
+
+<!-- intro animation -->
 <div id="introFx"><div class="ball"></div></div>
 
 <div class="wrap">
-<!-- Menu -->
+<!-- menu -->
 <div class="tabs" role="tablist">
 <button class="tab active" data-target="cover" type="button">Home</button>
 <button class="tab" data-target="intro" type="button">About</button>
@@ -213,7 +212,10 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<a class="btn-cv stagger" data-order="7" href="imags/Areej Mansour Balhraith.pdf" download>Download CV</a>
+<!-- Download CV (spaces encoded) -->
+<a class="btn-cv stagger" data-order="7"
+href="imags/Areej%20Mansour%20Balharith.pdf"
+download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
 </div>
 </div>
 </section>
@@ -235,7 +237,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 
 <!-- Projects -->
 <div id="tab-projects" class="grid">
-<!-- Excel -->
+<!-- Excel — Future Thinking series -->
 <div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="imags/Future Thiking.png">
 <div class="overlay"><div class="title">Future Thiking</div></div>
 </div>
@@ -249,7 +251,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="overlay"><div class="title">Future Thinking 3</div></div>
 </div>
 
-<!-- Power BI (Quiet Power) -->
+<!-- Power BI — Quiet Power series -->
 <div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="imags/Quite Power 0.png">
 <div class="overlay"><div class="title">Quiet Power 0</div></div>
 </div>
@@ -306,27 +308,57 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
-<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/></svg>
+<!-- Python -->
+<svg viewBox="0 0 48 48">
+<path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/>
+<circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/>
+</svg>
 <div>Python</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/><rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/></svg>
+<!-- Power BI -->
+<svg viewBox="0 0 48 48">
+<rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
+<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/>
+<rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/>
+<rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/>
+</svg>
 <div>Power BI</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/><path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/></svg>
+<!-- Excel -->
+<svg viewBox="0 0 48 48">
+<rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
+<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/>
+</svg>
 <div>Excel</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><g stroke-width="2" stroke-linecap="round"><path d="M24 9v8M20 13h8" stroke="#4E79A7"/><path d="M12 20v6M9 23h6" stroke="#F28E2B"/><path d="M36 20v6M33 23h6" stroke="#59A14F"/><path d="M24 29v8M20 33h8" stroke="#E15759"/></g></svg>
+<!-- Tableau -->
+<svg viewBox="0 0 48 48">
+<g stroke-width="2" stroke-linecap="round">
+<path d="M24 9v8M20 13h8" stroke="#4E79A7"/>
+<path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
+<path d="M36 20v6M33 23h6" stroke="#59A14F"/>
+<path d="M24 29v8M20 33h8" stroke="#E15759"/>
+</g>
+</svg>
 <div>Tableau</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/><path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/></svg>
+<!-- SQL -->
+<svg viewBox="0 0 48 48">
+<ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
+<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/>
+</svg>
 <div>SQL</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/><text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text></svg>
+<!-- SAP -->
+<svg viewBox="0 0 48 48">
+<rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
+<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text>
+</svg>
 <div>SAP</div>
 </div>
 </div>
@@ -335,14 +367,19 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 
 <!-- CONTACT -->
 <section id="contact" style="display:none;">
-<p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> - please connect via the links below. 🤝</p>
+<p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
-<a class="cta" href="https://twitter.com/" target="_blank" aria-label="Twitter">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1.9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
+<!-- X/Twitter -->
+<a class="cta" href="https://x.com/databyareej?s=21" target="_blank" aria-label="X (Twitter)">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+<path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1.9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/>
+</svg>
 </a>
-<a class="cta" href="https://www.linkedin.com/in/areej-balharith-b60344260" target="_blank" aria-label="LinkedIn">
+<!-- LinkedIn -->
+<a class="cta" href="https://www.linkedin.com/in/areej-balharith-b60344260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn">
 <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4.98 3.5c0 1.2-.99 2.2-2.22 2.2A2.2 2.2 0 1 1 4.98 3.5zM3 8h4v12H3zM9 8h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v6h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9z" fill="#111"/></svg>
 </a>
+<!-- Gmail -->
 <a class="cta" href="mailto:Areejmansour77@gmail.com" aria-label="Gmail">
 <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 6.5 12 12l9-5.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6.5Z" stroke="#111" stroke-width="1.4" fill="none"/><path d="M3 6.5 12 12l9-5.5" stroke="#111" stroke-width="1.4"/></svg>
 </a>
@@ -357,7 +394,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 
 <script>
-/* Safety: hide intro overlay even if errors happen */
+/* Hide intro overlay safely even if errors happen */
 setTimeout(function(){
 var fx=document.getElementById('introFx');
 if(fx) fx.classList.add('hidden');
@@ -365,39 +402,36 @@ if(fx) fx.classList.add('hidden');
 
 window.addEventListener('load',function(){
 setTimeout(function(){
-var lg=document.getElementById('logo');
-if(lg) lg.classList.add('show');
+var logo=document.getElementById('logo');
+if(logo) logo.classList.add('show');
 },1400);
 });
 
-/* Tabs */
+/* Tabs switching */
 var currentSection='cover';
 function showSection(id){
 currentSection=id;
-var secs=document.querySelectorAll('section');
-for(var i=0;i<secs.length;i++){
-secs[i].style.display=(secs[i].id===id)?'':'none';
-}
+document.querySelectorAll('section').forEach(function(s){
+s.style.display=(s.id===id)?'':'none';
+});
 document.body.style.overflow=(id==='cover')?'hidden':'';
 
+// portfolio helpers
 var ps=document.getElementById('projSelect');
 if(!ps) return;
 if(id!=='portfolio'){ ps.style.display='none'; }
 else { ps.style.display='inline-block'; lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
 }
-var tabs=document.querySelectorAll('.tab');
-for(var t=0;t<tabs.length;t++){
-(function(btn){
-btn.addEventListener('click',function(){
-for(var k=0;k<tabs.length;k++) tabs[k].classList.remove('active');
-btn.classList.add('active');
-showSection(btn.getAttribute('data-target'));
+document.querySelectorAll('.tab').forEach(function(t){
+t.addEventListener('click',function(){
+document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+t.classList.add('active');
+showSection(t.dataset.target);
 });
-})(tabs[t]);
-}
+});
 showSection('cover');
 
-/* Prevent scroll on Home */
+/* Block wheel / arrows ONLY on Home */
 function blockScrollKeys(e){
 if(currentSection!=='cover') return;
 var keys=['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '];
@@ -407,42 +441,51 @@ function blockWheel(e){ if(currentSection==='cover'){ e.preventDefault(); } }
 window.addEventListener('keydown',blockScrollKeys,{passive:false});
 window.addEventListener('wheel',blockWheel,{passive:false});
 
-/* ABOUT reveal + counters */
+/* ABOUT staged reveal + counters */
 (function(){
 var intro=document.querySelector('#intro');
 if(!intro) return;
 var staged=[].slice.call(document.querySelectorAll('#intro .stagger'));
 var nums=[].slice.call(document.querySelectorAll('#intro .num'));
+
 function startReveal(){
+// stagger
 for(var i=0;i<staged.length;i++){
 (function(el,idx){ setTimeout(function(){ el.classList.add('show'); }, idx*140); })(staged[i],i);
 }
+// counters
 for(var j=0;j<nums.length;j++){
 (function(n){
-var end=+n.getAttribute('data-target')||0, start=0, duration=1500, t0=Date.now();
+var end=+n.getAttribute('data-target')||0;
+var start=0, duration=1500, t0=Date.now();
 function step(){
 var p=Math.min((Date.now()-t0)/duration,1);
-var eased=1-Math.pow(1-p,3);
-n.textContent=String(Math.floor(start+eased*(end-start)));
+var eased=1-Math.pow(1-p,3); // easeOutCubic
+n.textContent=String(Math.floor(start + eased*(end-start)));
 if(p<1) requestAnimationFrame(step); else n.textContent=end;
 }
 requestAnimationFrame(step);
 })(nums[j]);
 }
 }
+
 if('IntersectionObserver' in window){
-var io=new IntersectionObserver(function(entries,obs){
+var io=new IntersectionObserver(function(entries, obs){
 for(var i=0;i<entries.length;i++){
 if(entries[i].isIntersecting){ startReveal(); obs.disconnect(); break; }
 }
-},{threshold:0.25});
+}, {threshold:0.25});
 io.observe(intro);
-} else { startReveal(); }
+} else {
+// fallback: run directly
+startReveal();
+}
 })();
 
-/* Portfolio tabs + filter */
-var pills=document.querySelectorAll('.pill');
+/* Portfolio inner tabs + dropdown filter */
+var pills=[].slice.call(document.querySelectorAll('.pill'));
 var projSelect=document.getElementById('projSelect');
+
 function showPortTab(name){
 var tp=document.getElementById('tab-projects');
 var tc=document.getElementById('tab-certificates');
@@ -450,48 +493,41 @@ var ts=document.getElementById('tab-skills');
 if(tp) tp.style.display=(name==='projects')?'':'none';
 if(tc) tc.style.display=(name==='certificates')?'':'none';
 if(ts) ts.style.display=(name==='skills')?'':'none';
-if(projSelect) projSelect.style.display=(name==='projects')?'inline-block':'none';
+if(projSelect) projSelect.style.display=(name==='projects') ? 'inline-block':'none';
 if(name==='projects'){ lazySetBG('#tab-projects .card-proj'); }
 if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 }
-for(var i=0;i<pills.length;i++){
-(function(p){
+pills.forEach(function(p){
 p.addEventListener('click',function(){
-for(var k=0;k<pills.length;k++) pills[k].classList.remove('active');
+pills.forEach(function(x){x.classList.remove('active');});
 p.classList.add('active');
 showPortTab(p.getAttribute('data-tab'));
 });
-})(pills[i]);
-}
+});
 showPortTab('projects');
 
-/* Filter */
+/* filter by dropdown */
 if(projSelect){
 projSelect.addEventListener('change',function(){
 var val=projSelect.value;
-var cards=document.querySelectorAll('#tab-projects .card-proj');
-for(var i=0;i<cards.length;i++){
-var c=cards[i];
+document.querySelectorAll('#tab-projects .card-proj').forEach(function(c){
 c.style.display=(val==='all'||c.getAttribute('data-type')===val)?'':'none';
-}
+});
 });
 }
 
-/* Lazy set background (we already provide full path with extension) */
+/* Helper: set background from data-img (we provide full path with extension) */
 function lazySetBG(selector){
-var els=document.querySelectorAll(selector);
-for(var i=0;i<els.length;i++){
-(function(el){
+document.querySelectorAll(selector).forEach(function(el){
 if(el.getAttribute('data-__loaded')) return;
 var src=el.getAttribute('data-img');
 var img=new Image();
 img.onload=function(){ el.style.backgroundImage="url('"+src+"')"; el.setAttribute('data-__loaded','1'); };
 img.src=src;
-})(els[i]);
-}
+});
 }
 
-/* Lightbox */
+/* Lightbox for Projects & Certificates */
 (function(){
 var lb=document.getElementById('lightbox'); if(!lb) return;
 var lbImg=lb.querySelector('img'); var lbClose=lb.querySelector('.close');
@@ -502,33 +538,36 @@ lb.addEventListener('click',function(e){ if(e.target===lb) closeLB(); });
 window.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLB(); });
 
 function attachLightbox(sel){
-var cards=document.querySelectorAll(sel);
-for(var i=0;i<cards.length;i++){
-(function(card){
+document.querySelectorAll(sel).forEach(function(card){
 card.addEventListener('click',function(){
 var url=card.getAttribute('data-img'); var test=new Image();
 test.onload=function(){ openLB(url); };
 test.src=url;
 });
-})(cards[i]);
-}
+});
 }
 attachLightbox('#tab-projects .card-proj');
 attachLightbox('#tab-certificates .card-cert');
 })();
 
-/* Sparkle trail */
+/* Softer mouse sparkle trail */
 (function(){
 var lastSpark=0;
 window.addEventListener('mousemove',function(e){
-var now=Date.now(); if(now-lastSpark<24) return; lastSpark=now;
-var s=document.createElement('span'); s.className='spark';
-s.style.left=(e.clientX-4)+'px'; s.style.top=(e.clientY-4)+'px';
+var now=Date.now();
+if(now-lastSpark<24) return;
+lastSpark=now;
+var s=document.createElement('span');
+s.className='spark';
+s.style.left=(e.clientX-4)+'px';
+s.style.top=(e.clientY-4)+'px';
 document.body.appendChild(s);
-setTimeout(function(){ if(s&&s.parentNode){ s.parentNode.removeChild(s); } },800);
+setTimeout(function(){ if(s && s.parentNode){ s.parentNode.removeChild(s); } },800);
 });
 })();
 </script>
 </body>
 </html>
+
+
 
