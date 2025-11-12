@@ -4,7 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AREEJ BALHARITH — MIS Portfolio</title>
-
 <style>
 :root{
 --bg:#f8f2e9; --bg2:#efe3d4; --ink:#000; --muted:#7b6b5e;
@@ -64,10 +63,12 @@ background:linear-gradient(120deg,rgba(255,255,255,.0),rgba(255,255,255,.5),rgba
 /* ABOUT */
 .intro{display:flex;gap:36px;align-items:flex-start}
 .left{flex:1;padding:22px;min-height:320px;background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.15));border-radius:12px;border:1px solid rgba(0,0,0,.08)}
-.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-30px)}
-.role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px;opacity:0;transform:translateX(40px)}
-@keyframes slideDown{to{opacity:1;transform:translateY(0)}}
-@keyframes slideLeft{to{opacity:1;transform:translateX(0)}}
+/* name/role with animation back */
+.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-34px);animation:nameIn .9s ease-out .2s forwards}
+.role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px;opacity:0;transform:translateX(70px);animation:roleIn .9s ease-out .5s forwards}
+@keyframes nameIn{to{opacity:1;transform:translateY(0)}}
+@keyframes roleIn{to{opacity:1;transform:translateX(0)}}
+
 .bio{margin-top:16px;color:#6a564b;font-size:17px;line-height:1.6}
 .accent-grad{background:linear-gradient(90deg,#deb27c,#caa077,#b9876a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .btn-cv{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:linear-gradient(180deg,var(--sand),var(--sand2));
@@ -96,6 +97,11 @@ border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative
 #lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 #lightbox .close{position:fixed;top:18px;right:22px;background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;border:1px solid rgba(0,0,0,.08);cursor:pointer}
 
+/* SKILLS (نفس الأيقونات، حجم أصغر) */
+#tab-skills .grid{grid-template-columns:repeat(6,1fr)}
+.skill{height:130px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:8px;font-weight:800;font-size:13px}
+.skill svg{width:40px;height:40px;display:block}
+
 /* CONTACT */
 .contact-icons{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
 .cta{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;
@@ -108,8 +114,20 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 .hidden{display:none!important}
 
 /* Responsive */
-@media (max-width:900px){#logo{width:140px}.tabs{margin-left:120px}.grid{grid-template-columns:repeat(2,1fr)}#tab-skills .grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:640px){#logo{width:120px;left:10px;top:10px}.tabs{margin-left:110px}.wrap{padding-top:92px}.grid{grid-template-columns:1fr}}
+@media (max-width:1024px){
+.grid{grid-template-columns:repeat(2,1fr)}
+#tab-skills .grid{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:820px){
+#logo{width:140px}.tabs{margin-left:120px}
+}
+@media (max-width:640px){
+#logo{width:120px;left:10px;top:10px}
+.tabs{margin-left:0;flex-wrap:wrap}
+.wrap{padding-top:92px}
+.grid{grid-template-columns:1fr}
+#tab-skills .grid{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
@@ -147,8 +165,8 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 <section id="intro" style="display:none;">
 <div class="intro">
 <div class="left">
-<div class="name" id="aboutName" style="text-transform:uppercase;">AREEJ BALHARITH</div>
-<div class="role" id="aboutRole">DATA ANALYST</div>
+<div class="name" style="text-transform:uppercase;">AREEJ BALHARITH</div>
+<div class="role">DATA ANALYST</div>
 
 <p class="bio">
 Passionate Data Analyst interested in digital transformation and continuous learning.<br>
@@ -156,17 +174,19 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 </p>
 
 <div class="stats">
-<div class="stat"><div class="num" data-target="4">0</div><div class="label">Total projects</div></div>
-<div class="stat"><div class="num" data-target="5">0</div><div class="label">Certificates</div></div>
-<div class="stat"><div class="num" data-target="1">0</div><div class="label">Experience (yrs)</div></div>
+<div class="stat"><div class="num">4</div><div class="label">Total projects</div></div>
+<div class="stat"><div class="num">5</div><div class="label">Certificates</div></div>
+<div class="stat"><div class="num">1</div><div class="label">Experience (yrs)</div></div>
 </div>
 
 <p class="bio" style="margin-top:24px;">
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- Download CV -->
-<a id="cvLink" class="btn-cv" href="cv/areej_cv.pdf" download>Download CV</a>
+<!-- Download CV (Google Drive direct) -->
+<a id="cvLink" class="btn-cv"
+href="https://drive.google.com/uc?export=download&id=10WSFfG9lWZyWvGu7HA53jtDTDtcEa33D"
+target="_blank" rel="noopener">Download CV</a>
 </div>
 </div>
 </section>
@@ -259,33 +279,57 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
-<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/></svg>
+<!-- Python -->
+<svg viewBox="0 0 48 48">
+<path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/>
+<circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/>
+</svg>
 <div>Python</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
-<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/></svg>
+<!-- Power BI -->
+<svg viewBox="0 0 48 48">
+<rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
+<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/>
+<rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/>
+<rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/>
+</svg>
 <div>Power BI</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
-<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/></svg>
+<!-- Excel -->
+<svg viewBox="0 0 48 48">
+<rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
+<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/>
+</svg>
 <div>Excel</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><g stroke-width="2" stroke-linecap="round">
-<path d="M24 9v8M20 13h8" stroke="#4E79A7"/><path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
-<path d="M36 20v6M33 23h6" stroke="#59A14F"/><path d="M24 29v8M20 33h8" stroke="#E15759"/></g></svg>
+<!-- Tableau -->
+<svg viewBox="0 0 48 48">
+<g stroke-width="2" stroke-linecap="round">
+<path d="M24 9v8M20 13h8" stroke="#4E79A7"/>
+<path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
+<path d="M36 20v6M33 23h6" stroke="#59A14F"/>
+<path d="M24 29v8M20 33h8" stroke="#E15759"/>
+</g>
+</svg>
 <div>Tableau</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
-<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/></svg>
+<!-- SQL -->
+<svg viewBox="0 0 48 48">
+<ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
+<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/>
+</svg>
 <div>SQL</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
-<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text></svg>
+<!-- SAP -->
+<svg viewBox="0 0 48 48">
+<rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
+<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text>
+</svg>
 <div>SAP</div>
 </div>
 </div>
@@ -297,7 +341,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
 <a class="cta" href="https://x.com/databyareej?s=21" target="_blank" aria-label="X (Twitter)">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3 .1-.6 .1-.9 .1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
 </a>
 <a class="cta" href="https://www.linkedin.com/in/areej-balharith-b60344260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn">
 <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4.98 3.5c0 1.2-.99 2.2-2.22 2.2A2.2 2.2 0 1 1 4.98 3.5zM3 8h4v12H3zM9 8h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v6h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9z" fill="#111"/></svg>
@@ -324,16 +368,16 @@ window.addEventListener('load',function(){ setTimeout(function(){ var l=document
 let currentSection='cover';
 function showSection(id){
 currentSection=id;
-document.querySelectorAll('section').forEach(function(s){ s.style.display=(s.id===id)?'':'none'; });
+document.querySelectorAll('section').forEach(s=>s.style.display=(s.id===id)?'':'none');
 
-var ps=document.getElementById('projSelect');
+const ps=document.getElementById('projSelect');
 if(ps){ ps.style.display=(id==='portfolio' && document.querySelector('#pill-projects').classList.contains('active'))?'inline-block':'none'; }
 
 if(id==='portfolio'){ lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
 }
-document.querySelectorAll('.tab').forEach(function(t){
-t.addEventListener('click',function(){
-document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+document.querySelectorAll('.tab').forEach(t=>{
+t.addEventListener('click',()=>{
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
 t.classList.add('active');
 showSection(t.dataset.target);
 });
@@ -341,8 +385,8 @@ showSection(t.dataset.target);
 showSection('cover');
 
 /* Portfolio inner tabs + dropdown */
-var pills=[].slice.call(document.querySelectorAll('.pill'));
-var projSelect=document.getElementById('projSelect');
+const pills=[...document.querySelectorAll('.pill')];
+const projSelect=document.getElementById('projSelect');
 function showPortTab(name){
 document.getElementById('tab-projects').style.display=(name==='projects')?'':'none';
 document.getElementById('tab-certificates').style.display=(name==='certificates')?'':'none';
@@ -351,13 +395,13 @@ if(projSelect) projSelect.style.display=(name==='projects')?'inline-block':'none
 if(name==='projects'){ lazySetBG('#tab-projects .card-proj'); }
 if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 }
-pills.forEach(function(p){ p.addEventListener('click',function(){ pills.forEach(function(x){ x.classList.remove('active'); }); p.classList.add('active'); showPortTab(p.dataset.tab); }); });
+pills.forEach(p=>p.addEventListener('click',()=>{ pills.forEach(x=>x.classList.remove('active')); p.classList.add('active'); showPortTab(p.dataset.tab); }));
 showPortTab('projects');
 
 if(projSelect){
-projSelect.addEventListener('change',function(){
-var val=projSelect.value;
-document.querySelectorAll('#tab-projects .card-proj').forEach(function(c){
+projSelect.addEventListener('change',()=>{
+const val=projSelect.value;
+document.querySelectorAll('#tab-projects .card-proj').forEach(c=>{
 c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 });
@@ -365,89 +409,50 @@ c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 
 /* Lazy set background */
 function lazySetBG(selector){
-document.querySelectorAll(selector).forEach(function(el){
+document.querySelectorAll(selector).forEach(el=>{
 if(el.dataset.__loaded) return;
-var src=el.getAttribute('data-img');
-var img=new Image();
-img.onload=function(){ el.style.backgroundImage="url('"+src+"')"; el.dataset.__loaded="1"; };
+const src=el.getAttribute('data-img');
+const img=new Image();
+img.onload=()=>{ el.style.backgroundImage=`url('${src}')`; el.dataset.__loaded="1"; };
 img.src=src;
 });
 }
 
 /* Lightbox */
 (function(){
-var lb=document.getElementById('lightbox'); if(!lb) return;
-var lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.close');
+const lb=document.getElementById('lightbox'); if(!lb) return;
+const lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.close');
 function openLB(src){ lb.style.display='flex'; lbImg.src=src; }
 function closeLB(){ lb.style.display='none'; lbImg.src=''; }
 lbClose.addEventListener('click',closeLB);
-lb.addEventListener('click',function(e){ if(e.target===lb) closeLB(); });
-window.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLB(); });
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLB(); });
 function attach(sel){
-document.querySelectorAll(sel).forEach(function(card){
-card.addEventListener('click',function(){ openLB(card.getAttribute('data-img')); });
+document.querySelectorAll(sel).forEach(card=>{
+card.addEventListener('click',()=>{ openLB(card.getAttribute('data-img')); });
 });
 }
 attach('#tab-projects .card-proj'); attach('#tab-certificates .card-cert');
 })();
 
-/* CV link (basic + fallback RAW) */
-(function setupCV(){
-var a = document.getElementById('cvLink');
-if(!a) return;
-
-var fileName = '__areej_cv.pdf'; // <-- اسم ملف الـ PDF داخل /cv/
-var pagesURL = 'cv/' + encodeURIComponent(fileName);
-var rawURL = 'https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/cv/' + encodeURIComponent(fileName);
-
-a.setAttribute('href', pagesURL);
-
-// فحص سريع: لو GitHub Pages ما لقاه (تأخير كاش)، بدّل تلقائيًا إلى RAW
-fetch(pagesURL, { method: 'HEAD' }).then(function(r){
-if(!r.ok){ a.setAttribute('href', rawURL); }
-}).catch(function(){ a.setAttribute('href', rawURL); });
-})();
-
-/* About: bring back animations (name + role) */
-(function aboutAnimations(){
-var section = document.getElementById('intro');
-if(!section) return;
-var nameEl = document.getElementById('aboutName');
-var roleEl = document.getElementById('aboutRole');
-
-var io = new IntersectionObserver(function(entries){
-entries.forEach(function(entry){
-if(!entry.isIntersecting) return;
-
-// اسم — ينزل لتحت
-nameEl.style.animation = 'slideDown .7s ease forwards';
-// مسمى — يزحف لليسار بتأخير بسيط
-setTimeout(function(){
-roleEl.style.animation = 'slideLeft .7s ease forwards';
-}, 220);
-
-io.disconnect();
-});
-}, {threshold:.35});
-io.observe(section);
-})();
-
-/* About counters animation */
+/* About counters animation (سريعة ومريحة) */
 (function counters(){
-var section=document.getElementById('intro');
+const section=document.getElementById('intro');
 if(!section) return;
-var nums=[].slice.call(section.querySelectorAll('.num'));
+const nums=[...section.querySelectorAll('.num')];
 if(nums.length===0) return;
 
-var io=new IntersectionObserver(function(entries){
-entries.forEach(function(entry){
+const io=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
 if(!entry.isIntersecting) return;
-nums.forEach(function(n){
-var end=+n.getAttribute('data-target')||0;
-var start=0, duration=1200, t0=performance.now();
+nums.forEach(n=>{
+const end=+n.textContent.trim()||0;
+const start=0;
+const duration=1500;
+const t0=performance.now();
 function step(now){
-var p=Math.min((now-t0)/duration,1);
-var eased=1-Math.pow(1-p,3);
+const p=Math.min((now-t0)/duration,1);
+const eased=1-Math.pow(1-p,3);
 n.textContent=String(Math.floor(start + eased*(end-start)));
 if(p<1) requestAnimationFrame(step); else n.textContent=end;
 }
