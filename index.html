@@ -167,11 +167,8 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- Download CV (with raw fallback) -->
-<a id="cvLink" class="btn-cv"
-href="imags/Areej%20Mansour%20Balharith.pdf"
-data-raw="https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/imags/Areej%20Mansour%20Balharith.pdf"
-download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
+<!-- Download CV (href يُبنى تلقائيًا) -->
+<a id="cvLink" class="btn-cv" href="#" download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
 </div>
 </div>
 </section>
@@ -368,7 +365,7 @@ c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 }
 
-/* Lazy set background using exact data-img path */
+/* Lazy set background */
 function lazySetBG(selector){
 document.querySelectorAll(selector).forEach(el=>{
 if(el.dataset.__loaded) return;
@@ -396,17 +393,24 @@ card.addEventListener('click',()=>{ openLB(card.getAttribute('data-img')); });
 attach('#tab-projects .card-proj'); attach('#tab-certificates .card-cert');
 })();
 
-/* CV fallback: جرّب الملف داخل Pages، ولو فشل استخدم raw من GitHub */
-(async function fixCV(){
-try{
-const a=document.getElementById('cvLink');
+/* CV link: يبني الرابط مع ترميز المسافات + يتحقق ويعمل fallback للـ RAW */
+(function setupCV(){
+var a = document.getElementById('cvLink');
 if(!a) return;
-const head=await fetch(a.getAttribute('href'), {method:'HEAD'});
-if(!head.ok){ a.setAttribute('href', a.dataset.raw); }
-}catch(e){
-const a=document.getElementById('cvLink');
-if(a) a.setAttribute('href', a.dataset.raw);
-}
+
+var fileName = 'Areej Mansour Balharith.pdf';
+var pagesHref = 'imags/' + encodeURIComponent(fileName);
+var rawHref = 'https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/imags/' + encodeURIComponent(fileName);
+
+// استخدم Pages أولاً (نفس الأصل => download يعمل)
+a.setAttribute('href', pagesHref);
+
+// لو الملف مش متاح (404) حوّل للـ RAW تلقائياً
+fetch(pagesHref, { method: 'HEAD' }).then(function(r){
+if(!r.ok){ a.setAttribute('href', rawHref); }
+}).catch(function(){
+a.setAttribute('href', rawHref);
+});
 })();
 
 /* About counters animation */
