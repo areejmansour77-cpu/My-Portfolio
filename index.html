@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AREEJ BALHARITH — MIS Portfolio</title>
 <style>
 :root{
@@ -15,21 +15,24 @@
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
+/* Layout container (desktop default) */
+.wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
+html.is-mobile .wrap{max-width:100%;padding:82px 14px 48px}
+
 /* Logo */
 #logo{position:fixed;top:18px;left:18px;width:160px;z-index:300;opacity:0;transform:translateY(-6px);
 transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
+html.is-mobile #logo{width:120px;left:10px;top:10px}
 
 /* Watermark */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
 .watermark::before{content:"";width:min(68vw,820px);height:min(68vw,820px);
 background:url('imags/Logo2.png') center/contain no-repeat;filter:grayscale(40%);opacity:.9}
 
-/* Wrapper */
-.wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
-
 /* Tabs */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
+html.is-mobile .tabs{margin-left:110px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
 transition:transform .22s,box-shadow .22s,background .22s;animation:menuIn .45s ease-out .7s forwards;opacity:0;transform:translateY(-8px)}
@@ -109,8 +112,15 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 .ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25)}
 .hidden{display:none!important}
 
-@media (max-width:900px){#logo{width:140px}.tabs{margin-left:120px}.grid{grid-template-columns:repeat(2,1fr)}#tab-skills .grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:640px){#logo{width:120px;left:10px;top:10px}.tabs{margin-left:110px}.wrap{padding-top:92px}}
+/* Responsive grid breakpoints */
+@media (max-width:900px){
+.grid{grid-template-columns:repeat(2,1fr)}
+#logo{width:140px}
+.tabs{margin-left:120px}
+}
+@media (max-width:640px){
+.grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -168,9 +178,9 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 
 <!-- Download CV (with fallback to raw link) -->
 <a id="cvLink" class="btn-cv"
-href="imags/Areej%20Mansour%20Balhraith.pdf"
-data-raw="https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/imags/Areej%20Mansour%20Balhraith.pdf"
-download="Areej_Mansour_Balhraith_CV.pdf">Download CV</a>
+href="imags/Areej%20Mansour%20Balharith.pdf"
+data-raw="https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/imags/Areej%20Mansour%20Balharith.pdf"
+download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
 </div>
 </div>
 </section>
@@ -320,6 +330,21 @@ download="Areej_Mansour_Balhraith_CV.pdf">Download CV</a>
 </div>
 
 <script>
+/* Device class: adds is-mobile or is-desktop for fine control */
+(function setDeviceClass(){
+function apply(){
+if(window.matchMedia('(max-width: 640px)').matches){
+document.documentElement.classList.add('is-mobile');
+document.documentElement.classList.remove('is-desktop');
+}else{
+document.documentElement.classList.add('is-desktop');
+document.documentElement.classList.remove('is-mobile');
+}
+}
+apply();
+window.addEventListener('resize', apply);
+})();
+
 /* Intro logo / overlay */
 setTimeout(function(){ var fx=document.getElementById('introFx'); if(fx) fx.classList.add('hidden'); },2400);
 window.addEventListener('load',function(){ setTimeout(function(){ var l=document.getElementById('logo'); if(l) l.classList.add('show'); },1400); });
@@ -440,6 +465,3 @@ io.observe(section);
 </script>
 </body>
 </html>
-
-
-
