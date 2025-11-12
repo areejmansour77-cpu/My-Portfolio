@@ -169,8 +169,23 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </p>
 
 <!-- Download CV (from /cv/Areej Mansour.pdf) -->
-<a class="btn-cv" href="cv/Areej%20Mansour.pdf" download>Download CV</a>
-</div>
+<a id="cvLink" class="btn-cv" href="#" download>Download CV</a>
+
+<script>
+(function(){
+  var a = document.getElementById('cvLink');
+  var fileName = 'Areej Mansour.pdf';
+  var rawURL = 'https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/cv/' + encodeURIComponent(fileName);
+  var pagesURL = 'https://areejmansour77-cpu.github.io/My-Portfolio/cv/' + encodeURIComponent(fileName);
+
+  // يحاول من GitHub Pages أولًا، ولو ما اشتغل يحول تلقائيًا إلى Raw
+  fetch(pagesURL, {method:'HEAD'}).then(r=>{
+    a.href = r.ok ? pagesURL : rawURL;
+  }).catch(()=>{
+    a.href = rawURL;
+  });
+})();
+</script></div>
 </div>
 </section>
 
@@ -447,3 +462,4 @@ io.observe(about);
 </script>
 </body>
 </html>
+
