@@ -10,11 +10,11 @@
 --bg:#f8f2e9; --bg2:#efe3d4; --ink:#000; --muted:#7b6b5e;
 --sand:#f7edde; --sand2:#f1e6d6;
 --soft:#e3a26f; --soft2:#ffd9bd;
+--gold:#8b5e3c;
 }
 *{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
 
 /* Layout */
 .wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
@@ -26,17 +26,15 @@ transition:opacity .5s ease .1s,transform .5s ease .1s}
 
 /* Watermark */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
-.watermark::before{
-content:"";width:min(68vw,820px);height:min(68vw,820px);
-background:url('imags/Logo2.png') center/contain no-repeat;filter:grayscale(40%);opacity:.9
-}
+.watermark::before{content:"";width:min(68vw,820px);height:min(68vw,820px);
+background:url('imags/Logo2.png') center/contain no-repeat;filter:grayscale(40%);opacity:.9}
 
 /* Tabs */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
 transition:transform .22s,box-shadow .22s,background .22s;animation:menuIn .45s ease-out .7s forwards;opacity:0;transform:translateY(-8px)}
-.tab:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.tab:hover{transform:translateY(-4px) rotateX(5deg);box-shadow:0 10px 22px rgba(0,0,0,.18)}
 .tab.active{box-shadow:0 10px 24px rgba(120,90,60,.18)}
 @keyframes menuIn{to{opacity:1;transform:translateY(0)}}
 
@@ -66,14 +64,15 @@ background:linear-gradient(120deg,rgba(255,255,255,.0),rgba(255,255,255,.5),rgba
 /* ABOUT */
 .intro{display:flex;gap:36px;align-items:flex-start}
 .left{flex:1;padding:22px;min-height:320px;background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.15));border-radius:12px;border:1px solid rgba(0,0,0,.08)}
-.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-24px)}
-.role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px;opacity:0;transform:translateY(24px)}
+.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-30px)}
+.role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px;opacity:0;transform:translateX(40px)}
+@keyframes slideDown{to{opacity:1;transform:translateY(0)}}
+@keyframes slideLeft{to{opacity:1;transform:translateX(0)}}
 .bio{margin-top:16px;color:#6a564b;font-size:17px;line-height:1.6}
-.name.show,.role.show{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 .accent-grad{background:linear-gradient(90deg,#deb27c,#caa077,#b9876a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .btn-cv{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:linear-gradient(180deg,var(--sand),var(--sand2));
 border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12)}
-.btn-cv:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.btn-cv:hover{transform:translateY(-6px) rotateX(6deg);box-shadow:0 20px 40px rgba(0,0,0,.2);filter:saturate(1.05)}
 .stats{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
 .stat{flex:1 1 110px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.2));text-align:center;border:1px solid rgba(0,0,0,.08)}
 .stat .num{font-size:28px;font-weight:800;color:#2c221b;margin-bottom:6px}
@@ -103,11 +102,9 @@ border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative
 background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.18);background:linear-gradient(180deg,#fff3e4,#f5e9db)}
 
-/* Intro overlay */
+/* Intro overlay (auto-hide) */
 #introFx{position:fixed;inset:0;background:linear-gradient(180deg,var(--bg),var(--bg2));display:flex;align-items:center;justify-content:center;z-index:250;overflow:hidden}
-.ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25);
-animation:fall 1.2s ease-out forwards}
-@keyframes fall{from{transform:translateY(-60vh)}to{transform:translateY(0)}}
+.ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25)}
 .hidden{display:none!important}
 
 /* Responsive */
@@ -123,7 +120,7 @@ animation:fall 1.2s ease-out forwards}
 <!-- Watermark -->
 <div class="watermark" aria-hidden="true"></div>
 
-<!-- Intro overlay -->
+<!-- Intro (auto-hide) -->
 <div id="introFx"><div class="ball"></div></div>
 
 <div class="wrap">
@@ -168,23 +165,9 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- Download CV (from /cv/Areej Mansour.pdf) -->
-<a id="cvLink" class="btn-cv" href="#" download>Download CV</a>
-
-<script>
-(function(){
-  var a = document.getElementById('cvLink');
-  var fileName = 'Areej Mansour.pdf';
-  var pagesURL = 'github.com/areejmansour77-cpu/My-Portfolio/tree/main/cv' + encodeURIComponent(fileName);
-
-  // يحاول من GitHub Pages أولًا، ولو ما اشتغل يحول تلقائيًا إلى Raw
-  fetch(pagesURL, {method:'HEAD'}).then(r=>{
-    a.href = r.ok ? pagesURL : rawURL;
-  }).catch(()=>{
-    a.href = rawURL;
-  });
-})();
-</script></div>
+<!-- Download CV -->
+<a id="cvLink" class="btn-cv" href="cv/areej_cv.pdf" download>Download CV</a>
+</div>
 </div>
 </section>
 
@@ -206,68 +189,68 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <!-- Projects -->
 <div id="tab-projects" class="grid">
 <!-- Excel – Future Thinking -->
-<div class="card-proj" data-type="excel" data-img="imags/Future Thiking.png" style="background-image:url('imags/Future Thiking.png')">
+<div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="imags/Future Thiking.png">
 <div class="overlay"><div class="title">Future Thiking</div></div>
 </div>
-<div class="card-proj" data-type="excel" data-img="imags/Future Thinking 1.png" style="background-image:url('imags/Future Thinking 1.png')">
+<div class="card-proj" data-type="excel" data-title="Future Thinking 1" data-img="imags/Future Thinking 1.png">
 <div class="overlay"><div class="title">Future Thinking 1</div></div>
 </div>
-<div class="card-proj" data-type="excel" data-img="imags/Future Thinking 2.png" style="background-image:url('imags/Future Thinking 2.png')">
+<div class="card-proj" data-type="excel" data-title="Future Thinking 2" data-img="imags/Future Thinking 2.png">
 <div class="overlay"><div class="title">Future Thinking 2</div></div>
 </div>
-<div class="card-proj" data-type="excel" data-img="imags/Future Thinking 3.png" style="background-image:url('imags/Future Thinking 3.png')">
+<div class="card-proj" data-type="excel" data-title="Future Thinking 3" data-img="imags/Future Thinking 3.png">
 <div class="overlay"><div class="title">Future Thinking 3</div></div>
 </div>
 
 <!-- Power BI – Quiet Power -->
-<div class="card-proj" data-type="powerbi" data-img="imags/Quite Power 0.png" style="background-image:url('imags/Quite Power 0.png')">
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="imags/Quite Power 0.png">
 <div class="overlay"><div class="title">Quiet Power 0</div></div>
 </div>
-<div class="card-proj" data-type="powerbi" data-img="imags/Quite Power 1.png" style="background-image:url('imags/Quite Power 1.png')">
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 1" data-img="imags/Quite Power 1.png">
 <div class="overlay"><div class="title">Quiet Power 1</div></div>
 </div>
-<div class="card-proj" data-type="powerbi" data-img="imags/Quite Power 2.png" style="background-image:url('imags/Quite Power 2.png')">
+<div class="card-proj" data-type="powerbi" data-title="Quiet Power 2" data-img="imags/Quite Power 2.png">
 <div class="overlay"><div class="title">Quiet Power 2</div></div>
 </div>
 
 <!-- Tableau -->
-<div class="card-proj" data-type="tableau" data-img="imags/The Impact of Employee Burnout on Mental Health 1.png" style="background-image:url('imags/The Impact of Employee Burnout on Mental Health 1.png')">
+<div class="card-proj" data-type="tableau" data-title="Employee Burnout & Mental Health 1" data-img="imags/The Impact of Employee Burnout on Mental Health 1.png">
 <div class="overlay"><div class="title">The Impact of Employee Burnout on Mental Health 1</div></div>
 </div>
-<div class="card-proj" data-type="tableau" data-img="imags/Sales Dashboard.png" style="background-image:url('imags/Sales Dashboard.png')">
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard" data-img="imags/Sales Dashboard.png">
 <div class="overlay"><div class="title">Sales Dashboard</div></div>
 </div>
-<div class="card-proj" data-type="tableau" data-img="imags/Sales Dashboard 1.png" style="background-image:url('imags/Sales Dashboard 1.png')">
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 1" data-img="imags/Sales Dashboard 1.png">
 <div class="overlay"><div class="title">Sales Dashboard 1</div></div>
 </div>
-<div class="card-proj" data-type="tableau" data-img="imags/Sales Dashboard 2.png" style="background-image:url('imags/Sales Dashboard 2.png')">
+<div class="card-proj" data-type="tableau" data-title="Sales Dashboard 2" data-img="imags/Sales Dashboard 2.png">
 <div class="overlay"><div class="title">Sales Dashboard 2</div></div>
 </div>
 
 <!-- Python -->
-<div class="card-proj" data-type="python" data-img="imags/Python 1.jpeg" style="background-image:url('imags/Python 1.jpeg')">
+<div class="card-proj" data-type="python" data-title="Python 1" data-img="imags/Python 1.jpeg">
 <div class="overlay"><div class="title">Python 1</div></div>
 </div>
-<div class="card-proj" data-type="python" data-img="imags/Python 2.jpeg" style="background-image:url('imags/Python 2.jpeg')">
+<div class="card-proj" data-type="python" data-title="Python 2" data-img="imags/Python 2.jpeg">
 <div class="overlay"><div class="title">Python 2</div></div>
 </div>
 </div>
 
 <!-- Certificates -->
 <div id="tab-certificates" class="grid" style="display:none">
-<div class="card-cert" data-img="imags/Business Analysis Fundamentals Certificate.png" style="background-image:url('imags/Business Analysis Fundamentals Certificate.png')">
+<div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="imags/Business Analysis Fundamentals Certificate.png">
 <div class="overlay"><div class="title">Business Analysis Fundamentals Certificate</div></div>
 </div>
-<div class="card-cert" data-img="imags/BIDA.png" style="background-image:url('imags/BIDA.png')">
+<div class="card-cert" data-title="BIDA" data-img="imags/BIDA.png">
 <div class="overlay"><div class="title">BIDA</div></div>
 </div>
-<div class="card-cert" data-img="imags/GIB.png" style="background-image:url('imags/GIB.png')">
+<div class="card-cert" data-title="GIB" data-img="imags/GIB.png">
 <div class="overlay"><div class="title">GIB</div></div>
 </div>
-<div class="card-cert" data-img="imags/HRDF.png" style="background-image:url('imags/HRDF.png')">
+<div class="card-cert" data-title="HRDF" data-img="imags/HRDF.png">
 <div class="overlay"><div class="title">HRDF</div></div>
 </div>
-<div class="card-cert" data-img="imags/IAU.png" style="background-image:url('imags/IAU.png')">
+<div class="card-cert" data-title="IAU" data-img="imags/IAU.png">
 <div class="overlay"><div class="title">IAU</div></div>
 </div>
 </div>
@@ -276,32 +259,32 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
-<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"></path><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"></circle></svg>
+<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/></svg>
 <div>Python</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"></rect>
-<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"></rect><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"></rect><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"></rect></svg>
+<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
+<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/></svg>
 <div>Power BI</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"></rect>
-<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"></path></svg>
+<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
+<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/></svg>
 <div>Excel</div>
 </div>
 <div class="skill">
 <svg viewBox="0 0 48 48"><g stroke-width="2" stroke-linecap="round">
-<path d="M24 9v8M20 13h8" stroke="#4E79A7"></path><path d="M12 20v6M9 23h6" stroke="#F28E2B"></path>
-<path d="M36 20v6M33 23h6" stroke="#59A14F"></path><path d="M24 29v8M20 33h8" stroke="#E15759"></path></g></svg>
+<path d="M24 9v8M20 13h8" stroke="#4E79A7"/><path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
+<path d="M36 20v6M33 23h6" stroke="#59A14F"/><path d="M24 29v8M20 33h8" stroke="#E15759"/></g></svg>
 <div>Tableau</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"></ellipse>
-<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"></path></svg>
+<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
+<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/></svg>
 <div>SQL</div>
 </div>
 <div class="skill">
-<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"></rect>
+<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
 <text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text></svg>
 <div>SAP</div>
 </div>
@@ -314,13 +297,13 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
 <a class="cta" href="https://x.com/databyareej?s=21" target="_blank" aria-label="X (Twitter)">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"></path></svg>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3 .1-.6 .1-.9 .1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
 </a>
 <a class="cta" href="https://www.linkedin.com/in/areej-balharith-b60344260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4.98 3.5c0 1.2-.99 2.2-2.22 2.2A2.2 2.2 0 1 1 4.98 3.5zM3 8h4v12H3zM9 8h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v6h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9z" fill="#111"></path></svg>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4.98 3.5c0 1.2-.99 2.2-2.22 2.2A2.2 2.2 0 1 1 4.98 3.5zM3 8h4v12H3zM9 8h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v6h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9z" fill="#111"/></svg>
 </a>
 <a class="cta" href="mailto:Areejmansour77@gmail.com" aria-label="Gmail">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 6.5 12 12l9-5.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6.5Z" stroke="#111" stroke-width="1.4" fill="none"></path><path d="M3 6.5 12 12l9-5.5" stroke="#111" stroke-width="1.4"></path></svg>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 6.5 12 12l9-5.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6.5Z" stroke="#111" stroke-width="1.4" fill="none"/><path d="M3 6.5 12 12l9-5.5" stroke="#111" stroke-width="1.4"/></svg>
 </a>
 </div>
 </section>
@@ -334,134 +317,151 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 
 <script>
 /* Intro overlay + logo reveal */
-window.addEventListener('load', function(){
-setTimeout(function(){
-var fx = document.getElementById('introFx');
-if (fx) { fx.classList.add('hidden'); }
-var l = document.getElementById('logo');
-if (l) { l.classList.add('show'); }
-}, 1200);
-});
+setTimeout(function(){ var fx=document.getElementById('introFx'); if(fx) fx.classList.add('hidden'); },2400);
+window.addEventListener('load',function(){ setTimeout(function(){ var l=document.getElementById('logo'); if(l) l.classList.add('show'); },1400); });
 
 /* Tabs */
-(function(){
-var current = 'cover';
-function show(id){
-current = id;
-var secs = document.querySelectorAll('section');
-for (var i=0;i<secs.length;i++){
-secs[i].style.display = (secs[i].id === id) ? '' : 'none';
+let currentSection='cover';
+function showSection(id){
+currentSection=id;
+document.querySelectorAll('section').forEach(function(s){ s.style.display=(s.id===id)?'':'none'; });
+
+var ps=document.getElementById('projSelect');
+if(ps){ ps.style.display=(id==='portfolio' && document.querySelector('#pill-projects').classList.contains('active'))?'inline-block':'none'; }
+
+if(id==='portfolio'){ lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
 }
-var ps = document.getElementById('projSelect');
-if (ps){
-var projectsActive = document.getElementById('pill-projects').classList.contains('active');
-ps.style.display = (id==='portfolio' && projectsActive) ? 'inline-block' : 'none';
-}
-}
-var tabs = document.querySelectorAll('.tab');
-for (var t=0;t<tabs.length;t++){
-tabs[t].addEventListener('click', function(){
-for (var j=0;j<tabs.length;j++){ tabs[j].classList.remove('active'); }
-this.classList.add('active');
-show(this.getAttribute('data-target'));
+document.querySelectorAll('.tab').forEach(function(t){
+t.addEventListener('click',function(){
+document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+t.classList.add('active');
+showSection(t.dataset.target);
 });
-}
-show('cover');
-})();
+});
+showSection('cover');
 
 /* Portfolio inner tabs + dropdown */
-(function(){
-var pills = document.querySelectorAll('.pill');
-var projSelect = document.getElementById('projSelect');
-function showPort(name){
-document.getElementById('tab-projects').style.display = (name==='projects')?'':'none';
-document.getElementById('tab-certificates').style.display = (name==='certificates')?'':'none';
-document.getElementById('tab-skills').style.display = (name==='skills')?'':'none';
-if (projSelect) { projSelect.style.display = (name==='projects')?'inline-block':'none'; }
+var pills=[].slice.call(document.querySelectorAll('.pill'));
+var projSelect=document.getElementById('projSelect');
+function showPortTab(name){
+document.getElementById('tab-projects').style.display=(name==='projects')?'':'none';
+document.getElementById('tab-certificates').style.display=(name==='certificates')?'':'none';
+document.getElementById('tab-skills').style.display=(name==='skills')?'':'none';
+if(projSelect) projSelect.style.display=(name==='projects')?'inline-block':'none';
+if(name==='projects'){ lazySetBG('#tab-projects .card-proj'); }
+if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 }
-for (var i=0;i<pills.length;i++){
-pills[i].addEventListener('click', function(){
-for (var k=0;k<pills.length;k++){ pills[k].classList.remove('active'); }
-this.classList.add('active'); showPort(this.getAttribute('data-tab'));
+pills.forEach(function(p){ p.addEventListener('click',function(){ pills.forEach(function(x){ x.classList.remove('active'); }); p.classList.add('active'); showPortTab(p.dataset.tab); }); });
+showPortTab('projects');
+
+if(projSelect){
+projSelect.addEventListener('change',function(){
+var val=projSelect.value;
+document.querySelectorAll('#tab-projects .card-proj').forEach(function(c){
+c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
+});
 });
 }
-if (projSelect){
-projSelect.addEventListener('change', function(){
-var val = this.value;
-var cards = document.querySelectorAll('#tab-projects .card-proj');
-for (var c=0;c<cards.length;c++){
-var type = cards[c].getAttribute('data-type');
-cards[c].style.display = (val==='all' || val===type)? '' : 'none';
-}
+
+/* Lazy set background */
+function lazySetBG(selector){
+document.querySelectorAll(selector).forEach(function(el){
+if(el.dataset.__loaded) return;
+var src=el.getAttribute('data-img');
+var img=new Image();
+img.onload=function(){ el.style.backgroundImage="url('"+src+"')"; el.dataset.__loaded="1"; };
+img.src=src;
 });
 }
-showPort('projects');
-})();
 
 /* Lightbox */
 (function(){
-var lb = document.getElementById('lightbox');
-var img = lb.querySelector('img');
-var btn = lb.querySelector('.close');
-function openLB(src){ lb.style.display='flex'; img.src = src; }
-function closeLB(){ lb.style.display='none'; img.src=''; }
-btn.addEventListener('click', closeLB);
-lb.addEventListener('click', function(e){ if(e.target===lb){ closeLB(); } });
-window.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeLB(); } });
+var lb=document.getElementById('lightbox'); if(!lb) return;
+var lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.close');
+function openLB(src){ lb.style.display='flex'; lbImg.src=src; }
+function closeLB(){ lb.style.display='none'; lbImg.src=''; }
+lbClose.addEventListener('click',closeLB);
+lb.addEventListener('click',function(e){ if(e.target===lb) closeLB(); });
+window.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLB(); });
 function attach(sel){
-var cards = document.querySelectorAll(sel);
-for (var i=0;i<cards.length;i++){
-cards[i].addEventListener('click', function(){
-openLB(this.getAttribute('data-img'));
+document.querySelectorAll(sel).forEach(function(card){
+card.addEventListener('click',function(){ openLB(card.getAttribute('data-img')); });
 });
 }
-}
-attach('#tab-projects .card-proj');
-attach('#tab-certificates .card-cert');
+attach('#tab-projects .card-proj'); attach('#tab-certificates .card-cert');
 })();
 
-/* About: show name/role on intersect + animate numbers */
-(function(){
-var about = document.getElementById('intro');
-if (!about) return;
+/* CV link (basic + fallback RAW) */
+(function setupCV(){
+var a = document.getElementById('cvLink');
+if(!a) return;
+
+var fileName = 'areej_cv.pdf'; // <-- اسم ملف الـ PDF داخل /cv/
+var pagesURL = 'cv/' + encodeURIComponent(fileName);
+var rawURL = 'https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/cv/' + encodeURIComponent(fileName);
+
+a.setAttribute('href', pagesURL);
+
+// فحص سريع: لو GitHub Pages ما لقاه (تأخير كاش)، بدّل تلقائيًا إلى RAW
+fetch(pagesURL, { method: 'HEAD' }).then(function(r){
+if(!r.ok){ a.setAttribute('href', rawURL); }
+}).catch(function(){ a.setAttribute('href', rawURL); });
+})();
+
+/* About: bring back animations (name + role) */
+(function aboutAnimations(){
+var section = document.getElementById('intro');
+if(!section) return;
 var nameEl = document.getElementById('aboutName');
 var roleEl = document.getElementById('aboutRole');
-var nums = about.querySelectorAll('.num');
 
 var io = new IntersectionObserver(function(entries){
-for (var i=0;i<entries.length;i++){
-if (!entries[i].isIntersecting) continue;
+entries.forEach(function(entry){
+if(!entry.isIntersecting) return;
 
-// show name/role
-if (nameEl) nameEl.classList.add('show');
-if (roleEl) setTimeout(function(){ roleEl.classList.add('show'); }, 150);
+// اسم — ينزل لتحت
+nameEl.style.animation = 'slideDown .7s ease forwards';
+// مسمى — يزحف لليسار بتأخير بسيط
+setTimeout(function(){
+roleEl.style.animation = 'slideLeft .7s ease forwards';
+}, 220);
 
-// counters
-for (var n=0;n<nums.length;n++){
-(function(el){
-var end = parseInt(el.getAttribute('data-target'), 10) || 0;
-var start = 0;
-var duration = 1500;
-var t0 = performance.now();
-function step(now){
-var p = Math.min((now - t0)/duration, 1);
-var eased = 1 - Math.pow(1 - p, 3);
-el.textContent = String(Math.floor(start + eased*(end-start)));
-if (p < 1) { requestAnimationFrame(step); } else { el.textContent = String(end); }
-}
-requestAnimationFrame(step);
-})(nums[n]);
-}
 io.disconnect();
-break;
+});
+}, {threshold:.35});
+io.observe(section);
+})();
+
+/* About counters animation */
+(function counters(){
+var section=document.getElementById('intro');
+if(!section) return;
+var nums=[].slice.call(section.querySelectorAll('.num'));
+if(nums.length===0) return;
+
+var io=new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(!entry.isIntersecting) return;
+nums.forEach(function(n){
+var end=+n.getAttribute('data-target')||0;
+var start=0, duration=1200, t0=performance.now();
+function step(now){
+var p=Math.min((now-t0)/duration,1);
+var eased=1-Math.pow(1-p,3);
+n.textContent=String(Math.floor(start + eased*(end-start)));
+if(p<1) requestAnimationFrame(step); else n.textContent=end;
 }
-}, {threshold:0.25});
-io.observe(about);
+n.textContent='0';
+requestAnimationFrame(step);
+});
+io.disconnect();
+});
+},{threshold:.25});
+io.observe(section);
 })();
 </script>
 </body>
 </html>
-
 
 
 
