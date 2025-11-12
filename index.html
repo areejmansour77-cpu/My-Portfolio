@@ -2,35 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AREEJ BALHARITH — MIS Portfolio</title>
 <style>
 :root{
 --bg:#f8f2e9; --bg2:#efe3d4; --ink:#000; --muted:#7b6b5e;
 --sand:#f7edde; --sand2:#f1e6d6;
---soft:#e3a26f; --soft2:#ffd9bd; /* bars */
---gold:#8b5e3c; /* mouse glow */
+--soft:#e3a26f; --soft2:#ffd9bd;
+--gold:#8b5e3c;
 }
 *{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
-/* Logo (top-left) — uses Logo2.png now */
-#logo{position:fixed;top:18px;left:18px;width:160px;height:auto;object-fit:contain;z-index:300;opacity:0;transform:translateY(-6px);transition:opacity .5s ease .1s,transform .5s ease .1s}
-#logo.show{opacity:1;transform:translateY(0)}
-
-/* BIG Watermark (all pages) — uses Logo2.png */
-.watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
-.watermark::before{
-content:""; width:min(68vw,820px); height:min(68vw,820px);
-background:url('imags/Logo2.png') center/contain no-repeat;
-filter:grayscale(40%); opacity:.9;
-}
-
-/* Wrapper */
+/* Layout */
 .wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
 
-/* Top menu */
+/* Logo */
+#logo{position:fixed;top:18px;left:18px;width:160px;z-index:300;opacity:0;transform:translateY(-6px);
+transition:opacity .5s ease .1s,transform .5s ease .1s}
+#logo.show{opacity:1;transform:translateY(0)}
+
+/* Watermark */
+.watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
+.watermark::before{content:"";width:min(68vw,820px);height:min(68vw,820px);
+background:url('imags/Logo2.png') center/contain no-repeat;filter:grayscale(40%);opacity:.9}
+
+/* Tabs */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
@@ -38,35 +36,17 @@ transition:transform .22s,box-shadow .22s,background .22s;animation:menuIn .45s 
 .tab:hover{transform:translateY(-4px) rotateX(5deg);box-shadow:0 10px 22px rgba(0,0,0,.18)}
 .tab.active{box-shadow:0 10px 24px rgba(120,90,60,.18)}
 @keyframes menuIn{to{opacity:1;transform:translateY(0)}}
-.tab::after{content:"";position:absolute;left:-120%;top:-200%;width:280%;height:500%;
-background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.55),rgba(255,255,255,0) 42%),radial-gradient(circle at 70% 70%,rgba(255,255,255,.3),rgba(255,255,255,0) 48%);
-transform:rotate(15deg) translateX(-60%);opacity:.9;pointer-events:none;animation:sparkSweep 2.8s linear infinite}
-@keyframes sparkSweep{0%{transform:rotate(15deg) translateX(-70%)}100%{transform:rotate(15deg) translateX(10%)}}
 
 /* Sections */
 section{min-height:70vh;padding:36px 0}
 
 /* HOME */
 #cover{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
-#cover .orbs{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.orb{position:absolute;border-radius:50%;
-background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.95),rgba(255,255,255,.25) 60%,rgba(255,255,255,0));
-opacity:.92;animation:floatUp 18s linear infinite;mix-blend-mode:screen;filter:blur(.6px)}
-@keyframes floatUp{0%{transform:translateY(100vh) scale(.9);opacity:.45}50%{transform:translateY(60vh) scale(1)}100%{transform:translateY(-20vh) scale(1.1);opacity:0}}
-.orb.o1{width:110px;height:110px;left:5%;animation-delay:0s}
-.orb.o2{width:85px;height:85px;left:23%;animation-delay:3s}
-.orb.o3{width:95px;height:95px;right:14%;animation-delay:5s}
-.orb.o4{width:78px;height:78px;right:34%;animation-delay:2s}
-.orb.o5{width:105px;height:105px;left:49%;animation-delay:7s}
-.orb.o6{width:70px;height:70px;right:50%;animation-delay:9s}
-
 #hiTitle{font-size:72px;font-weight:900;color:var(--ink);opacity:0;transform:translateY(60px);animation:hiMove 1.2s ease-out 1.0s forwards}
 @keyframes hiMove{to{opacity:1;transform:translateY(0)}}
 #welcomeText{font-size:26px;letter-spacing:4px;color:#000;opacity:0;transform:translateX(80px);animation:welcomeSlide 1s ease-out 2.0s forwards}
 @keyframes welcomeSlide{to{opacity:1;transform:translateX(0)}}
-
-/* Bars */
-.dashboard{width:min(420px,92%);display:flex;justify-content:center;z-index:1;margin-top:72px}
+.dashboard{width:min(420px,92%);display:flex;justify-content:center;z-index:1;margin-top:68px}
 .bars{display:flex;align-items:end;gap:12px;height:160px;width:100%}
 .bar{width:16.5%;background:linear-gradient(180deg,var(--soft) 0%,var(--soft2) 100%);border-radius:12px;transform-origin:bottom center;animation:rise 3s infinite ease-in-out;
 box-shadow:0 8px 24px rgba(180,130,90,.18);position:relative;overflow:hidden}
@@ -83,22 +63,24 @@ background:linear-gradient(120deg,rgba(255,255,255,.0),rgba(255,255,255,.5),rgba
 /* ABOUT */
 .intro{display:flex;gap:36px;align-items:flex-start}
 .left{flex:1;padding:22px;min-height:320px;background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.15));border-radius:12px;border:1px solid rgba(0,0,0,.08)}
-.type-lines .name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-34px)}
+
+/* name & role animation (رجّعناها) */
+.name{font-size:44px;margin:8px 0;color:#3a2d25;font-weight:400;opacity:0;transform:translateY(-34px)}
 .role{font-size:30px;font-weight:800;color:#a35a27;letter-spacing:2px;opacity:0;transform:translateX(70px)}
-.bio{margin-top:16px;color:#6a564b;font-size:17px;line-height:1.6;opacity:0}
+.name.show{animation:nameIn .8s ease-out forwards}
+.role.show{animation:roleIn .8s ease-out .15s forwards}
+@keyframes nameIn{to{opacity:1;transform:translateY(0)}}
+@keyframes roleIn{to{opacity:1;transform:translateX(0)}}
+
+.bio{margin-top:16px;color:#6a564b;font-size:17px;line-height:1.6}
 .accent-grad{background:linear-gradient(90deg,#deb27c,#caa077,#b9876a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .btn-cv{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:linear-gradient(180deg,var(--sand),var(--sand2));
-border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12);
-transform:perspective(700px) translateZ(0);transition:transform .2s,box-shadow .2s,filter .2s,background-size .6s;background-size:100% 100%}
-.btn-cv:hover{transform:translateY(-6px) rotateX(6deg);box-shadow:0 20px 40px rgba(0,0,0,.2);filter:saturate(1.05);background-size:120% 120%}
-.btn-cv::after{content:"";position:absolute;left:-50%;top:-200%;width:220%;height:500%;
-background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.6),rgba(255,255,255,0) 42%),radial-gradient(circle at 70% 70%,rgba(255,255,255,.28),rgba(255,255,255,0) 48%);
-transform:rotate(15deg) translateX(-60%);animation:sparkSweep 2.2s linear infinite}
-.stats{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;opacity:0}
+border:1px solid rgba(0,0,0,.08);font-weight:800;color:#2c221b;position:relative;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12)}
+.btn-cv:hover{transform:translateY(-6px) rotateX(6deg);box-shadow:0 20px 40px rgba(0,0,0,.2);filter:saturate(1.05)}
+.stats{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
 .stat{flex:1 1 110px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.2));text-align:center;border:1px solid rgba(0,0,0,.08)}
 .stat .num{font-size:28px;font-weight:800;color:#2c221b;margin-bottom:6px}
 .stat .label{color:#7b6b5e;font-weight:700}
-.profile-card{margin-top:16px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.40),rgba(255,255,255,.20));border:1px solid rgba(0,0,0,.08);opacity:0}
 
 /* PORTFOLIO */
 .portfolio-nav{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
@@ -115,11 +97,10 @@ transform:rotate(15deg) translateX(-60%);animation:sparkSweep 2.2s linear infini
 
 /* Lightbox */
 #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:500}
-#lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:lbIn .22s ease-out}
-@keyframes lbIn{from{transform:scale(.96);opacity:.5}to{transform:scale(1);opacity:1}}
+#lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 #lightbox .close{position:fixed;top:18px;right:22px;background:#fff;border-radius:10px;padding:8px 12px;font-weight:800;border:1px solid rgba(0,0,0,.08);cursor:pointer}
 
-/* SKILLS — icon-first, larger, crisp */
+/* SKILLS */
 #tab-skills .grid{grid-template-columns:repeat(6,1fr)}
 .skill{height:150px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;gap:10px;font-weight:800;font-size:14px}
 .skill svg{width:56px;height:56px;display:block}
@@ -127,47 +108,32 @@ transform:rotate(15deg) translateX(-60%);animation:sparkSweep 2.2s linear infini
 /* CONTACT */
 .contact-icons{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
 .cta{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;
-background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
-transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
+background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);transition:.2s;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(0,0,0,.18);background:linear-gradient(180deg,#fff3e4,#f5e9db)}
 
-/* Opening FX (ball) */
+/* Intro overlay (auto-hide) */
 #introFx{position:fixed;inset:0;background:linear-gradient(180deg,var(--bg),var(--bg2));display:flex;align-items:center;justify-content:center;z-index:250;overflow:hidden}
-.ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25);
-animation:fallBounce 1.9s cubic-bezier(.28,.9,.26,1.2) forwards,expandScale .9s cubic-bezier(.2,.8,.2,1) 1.6s forwards,fxFade .45s ease 2.35s forwards}
-@keyframes fallBounce{0%{transform:translateY(-70vh)}60%{transform:translateY(0)}77%{transform:translateY(-26px)}90%{transform:translateY(0)}96%{transform:translateY(-10px)}100%{transform:translateY(0)}}
-@keyframes expandScale{0%{transform:scale(1)}100%{transform:scale(110)}}
-@keyframes fxFade{to{opacity:0}}
+.ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25)}
 .hidden{display:none!important}
 
-/* Stagger util */
-.stagger{opacity:0;transform:translateY(12px)}
-.stagger.show{opacity:1;transform:translateY(0);transition:opacity .45s ease,transform .45s ease}
-
-/* Softer mouse spark */
-.spark{position:fixed;pointer-events:none;width:8px;height:8px;border-radius:50%;
-background:radial-gradient(circle, rgba(255,245,230,.78) 0%, rgba(255,245,230,.4) 40%, rgba(139,94,60,.2) 62%, rgba(139,94,60,0) 78%);
-box-shadow:0 0 8px rgba(139,94,60,.35), 0 0 16px rgba(255,220,180,.28);
-z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;filter:blur(.2px)}
-@keyframes sparkFade{to{transform:translateY(-8px) scale(1.4);opacity:0}}
-
+/* Responsive */
 @media (max-width:900px){#logo{width:140px}.tabs{margin-left:120px}.grid{grid-template-columns:repeat(2,1fr)}#tab-skills .grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:640px){#logo{width:120px;left:10px;top:10px}.tabs{margin-left:110px}.wrap{padding-top:92px}}
+@media (max-width:640px){#logo{width:120px;left:10px;top:10px}.tabs{margin-left:110px}.wrap{padding-top:92px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- top-left logo (now Logo2.png) -->
+<!-- Logo -->
 <img id="logo" src="imags/Logo2.png" alt="Logo">
 
-<!-- global watermark -->
+<!-- Watermark -->
 <div class="watermark" aria-hidden="true"></div>
 
-<!-- intro animation -->
+<!-- Intro (auto-hide) -->
 <div id="introFx"><div class="ball"></div></div>
 
 <div class="wrap">
-<!-- menu -->
+<!-- Menu -->
 <div class="tabs" role="tablist">
 <button class="tab active" data-target="cover" type="button">Home</button>
 <button class="tab" data-target="intro" type="button">About</button>
@@ -177,14 +143,9 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 
 <!-- HOME -->
 <section id="cover">
-<div class="orbs">
-<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
-<div class="orb o4"></div><div class="orb o5"></div><div class="orb o6"></div>
-</div>
 <div id="hiTitle">Hi!</div>
 <div id="welcomeText">Welcome&nbsp;&nbsp;to&nbsp;&nbsp;my&nbsp;&nbsp;portfolio</div>
-
-<div class="dashboard" style="margin-top:68px">
+<div class="dashboard">
 <div class="bars">
 <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
 </div>
@@ -195,33 +156,26 @@ z-index:999;animation:sparkFade .8s ease-out forwards;mix-blend-mode:multiply;fi
 <section id="intro" style="display:none;">
 <div class="intro">
 <div class="left">
-<div class="type-lines">
-<div class="name stagger" data-order="1" style="text-transform:uppercase;">AREEJ BALHARITH</div>
-<div class="role stagger" data-order="2">DATA ANALYST</div>
-</div>
+<div class="name" style="text-transform:uppercase;">AREEJ BALHARITH</div>
+<div class="role">DATA ANALYST</div>
 
-<p class="bio stagger" data-order="3">
+<p class="bio">
 Passionate Data Analyst interested in digital transformation and continuous learning.<br>
 I love exploring new tools, technologies, and techniques and bring that curiosity into my work through clean, insightful, and impactful data analysis.
 </p>
 
-<div class="profile-card stagger" data-order="4">
-<h3 style="margin:0 0 8px 0">Quick Info</h3>
-<p style="color:#6a564b;margin:0">MIS • Data Analysis • Power BI • Excel • Python • Tableau • <strong>BIDA</strong></p>
+<div class="stats">
+<div class="stat"><div class="num">4</div><div class="label">Total projects</div></div>
+<div class="stat"><div class="num">5</div><div class="label">Certificates</div></div>
+<div class="stat"><div class="num">1</div><div class="label">Experience (yrs)</div></div>
 </div>
 
-<div class="stats stagger" data-order="5">
-<div class="stat"><div class="num" data-target="4">0</div><div class="label">Total projects</div></div>
-<div class="stat"><div class="num" data-target="5">0</div><div class="label">Certificates</div></div>
-<div class="stat"><div class="num" data-target="1">0</div><div class="label">Experience (yrs)</div></div>
-</div>
-
-<p class="bio stagger" data-order="6" style="margin-top:24px;">
+<p class="bio" style="margin-top:24px;">
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- CHANGED: CV link to Google Drive direct download -->
-<a class="btn-cv stagger" data-order="7" href="https://drive.google.com/uc?export=download&id=10WSFfG9lWZyWvGu7HA53jtDTDtcEa33D" download>Download CV</a>
+<!-- Download CV (بسيط مباشر إلى المجلد cv) -->
+<a class="btn-cv" href="cv/Areej%20Mansour.pdf" download>Download CV</a>
 </div>
 </div>
 </section>
@@ -230,7 +184,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <section id="portfolio" style="display:none;">
 <div class="portfolio-nav">
 <div id="pill-projects" class="pill active" data-tab="projects">Projects</div>
-<select id="projSelect" class="proj-select"><!-- يظهر فقط عند Projects -->
+<select id="projSelect" class="proj-select">
 <option value="all" selected>All</option>
 <option value="excel">Excel</option>
 <option value="powerbi">Power BI</option>
@@ -241,9 +195,9 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="pill" data-tab="skills">Skills</div>
 </div>
 
-<!-- Projects (titles only with imags/ paths) -->
+<!-- Projects -->
 <div id="tab-projects" class="grid">
-<!-- Excel — Future Thinking -->
+<!-- Excel – Future Thinking -->
 <div class="card-proj" data-type="excel" data-title="Future Thiking" data-img="imags/Future Thiking.png">
 <div class="overlay"><div class="title">Future Thiking</div></div>
 </div>
@@ -257,7 +211,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <div class="overlay"><div class="title">Future Thinking 3</div></div>
 </div>
 
-<!-- Power BI — Quiet Power -->
+<!-- Power BI – Quiet Power -->
 <div class="card-proj" data-type="powerbi" data-title="Quiet Power 0" data-img="imags/Quite Power 0.png">
 <div class="overlay"><div class="title">Quiet Power 0</div></div>
 </div>
@@ -291,7 +245,7 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </div>
 
-<!-- Certificates (PNG titles you gave) -->
+<!-- Certificates -->
 <div id="tab-certificates" class="grid" style="display:none">
 <div class="card-cert" data-title="Business Analysis Fundamentals Certificate" data-img="imags/Business Analysis Fundamentals Certificate.png">
 <div class="overlay"><div class="title">Business Analysis Fundamentals Certificate</div></div>
@@ -310,61 +264,37 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 </div>
 
-<!-- Skills — icon-first (clean SVGs) -->
+<!-- Skills -->
 <div id="tab-skills" style="display:none">
 <div class="grid" style="grid-template-columns:repeat(6,1fr)">
 <div class="skill">
-<!-- Python -->
-<svg viewBox="0 0 48 48">
-<path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/>
-<circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/>
-</svg>
+<svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 6c8 0 8 4 8 4v4H19a4 4 0 0 0-4 4v4H17s0 4 7 4 7-4 7-4v-3h-7"/><circle cx="20" cy="9.8" r="1.6" fill="#FFD343"/></svg>
 <div>Python</div>
 </div>
 <div class="skill">
-<!-- Power BI -->
-<svg viewBox="0 0 48 48">
-<rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
-<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/>
-<rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/>
-<rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/>
-</svg>
+<svg viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="28" rx="6" fill="#FFF7DA" stroke="#E3C45A"/>
+<rect x="12" y="22" width="4" height="12" rx="1" fill="#111"/><rect x="20" y="16" width="4" height="18" rx="1" fill="#111"/><rect x="28" y="24" width="4" height="10" rx="1" fill="#111"/></svg>
 <div>Power BI</div>
 </div>
 <div class="skill">
-<!-- Excel -->
-<svg viewBox="0 0 48 48">
-<rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
-<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/>
-</svg>
+<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4" fill="#e9f3ec" stroke="#217346" stroke-width="2"/>
+<path d="M18 16l12 16M30 16L18 32" stroke="#217346" stroke-width="3" stroke-linecap="round"/></svg>
 <div>Excel</div>
 </div>
 <div class="skill">
-<!-- Tableau -->
-<svg viewBox="0 0 48 48">
-<g stroke-width="2" stroke-linecap="round">
-<path d="M24 9v8M20 13h8" stroke="#4E79A7"/>
-<path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
-<path d="M36 20v6M33 23h6" stroke="#59A14F"/>
-<path d="M24 29v8M20 33h8" stroke="#E15759"/>
-</g>
-</svg>
+<svg viewBox="0 0 48 48"><g stroke-width="2" stroke-linecap="round">
+<path d="M24 9v8M20 13h8" stroke="#4E79A7"/><path d="M12 20v6M9 23h6" stroke="#F28E2B"/>
+<path d="M36 20v6M33 23h6" stroke="#59A14F"/><path d="M24 29v8M20 33h8" stroke="#E15759"/></g></svg>
 <div>Tableau</div>
 </div>
 <div class="skill">
-<!-- SQL -->
-<svg viewBox="0 0 48 48">
-<ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
-<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/>
-</svg>
+<svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="5" stroke="#3366CC" stroke-width="2" fill="none"/>
+<path d="M12 14v14c0 3 5.4 5 12 5s12-2 12-5V14" stroke="#3366CC" stroke-width="2" fill="none"/></svg>
 <div>SQL</div>
 </div>
 <div class="skill">
-<!-- SAP (generic box) -->
-<svg viewBox="0 0 48 48">
-<rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
-<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text>
-</svg>
+<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="24" rx="4" fill="#e8f6ff" stroke="#0FAAFF" stroke-width="2"/>
+<text x="24" y="28" font-size="10" text-anchor="middle" fill="#0FAAFF" font-weight="700">SAP</text></svg>
 <div>SAP</div>
 </div>
 </div>
@@ -375,8 +305,8 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 <section id="contact" style="display:none;">
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
-<a class="cta" href="https://twitter.com/" target="_blank" aria-label="Twitter">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3 .1-.6 .1-.9 .1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
+<a class="cta" href="https://x.com/databyareej?s=21" target="_blank" aria-label="X (Twitter)">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
 </a>
 <a class="cta" href="https://www.linkedin.com/in/areej-balharith-b60344260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn">
 <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4.98 3.5c0 1.2-.99 2.2-2.22 2.2A2.2 2.2 0 1 1 4.98 3.5zM3 8h4v12H3zM9 8h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v6h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9z" fill="#111"/></svg>
@@ -386,7 +316,6 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </a>
 </div>
 </section>
-
 </div>
 
 <!-- Lightbox -->
@@ -396,29 +325,20 @@ Hold your breath and watch how data <strong class="accent-grad">transforms into 
 </div>
 
 <script>
-/* Show logo after intro + remove overlay */
-window.addEventListener('load',()=>{
-setTimeout(()=>document.getElementById('logo').classList.add('show'), 1400);
-});
-setTimeout(()=>{ document.getElementById('introFx').classList.add('hidden'); }, 2400);
+/* Intro overlay + logo reveal */
+setTimeout(function(){ var fx=document.getElementById('introFx'); if(fx) fx.classList.add('hidden'); },2400);
+window.addEventListener('load',function(){ setTimeout(function(){ var l=document.getElementById('logo'); if(l) l.classList.add('show'); },1400); });
 
-/* Tabs switching (no scrolling navigation) */
+/* Tabs */
 let currentSection='cover';
 function showSection(id){
 currentSection=id;
-document.querySelectorAll('section').forEach(s=>s.style.display=(s.id===id)?'':'none';
+document.querySelectorAll('section').forEach(s=>s.style.display=(s.id===id)?'':'none');
 
-// Only Home cannot scroll
-if(id==='cover'){
-document.body.style.overflow='hidden';
-}else{
-document.body.style.overflow='';
-}
-
-// portfolio helpers
 const ps=document.getElementById('projSelect');
-if(id!=='portfolio'){ ps.style.display='none'; }
-else { ps.style.display='inline-block'; lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
+if(ps){ ps.style.display=(id==='portfolio' && document.querySelector('#pill-projects').classList.contains('active'))?'inline-block':'none'; }
+
+if(id==='portfolio'){ lazySetBG('#tab-projects .card-proj'); lazySetBG('#tab-certificates .card-cert'); }
 }
 document.querySelectorAll('.tab').forEach(t=>{
 t.addEventListener('click',()=>{
@@ -429,126 +349,90 @@ showSection(t.dataset.target);
 });
 showSection('cover');
 
-/* Block wheel / arrows ONLY on Home to keep it fixed; navigate only by menu buttons */
-function blockScrollKeys(e){
-if(currentSection!=='cover') return;
-const keys=['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' '];
-if(keys.includes(e.key)){ e.preventDefault(); }
-}
-function blockWheel(e){ if(currentSection==='cover'){ e.preventDefault(); } }
-window.addEventListener('keydown',blockScrollKeys,{passive:false});
-window.addEventListener('wheel',blockWheel,{passive:false});
-
-/* ABOUT staged reveal + proper counters (0 -> target, smooth & simultaneous) */
-const staged=[...document.querySelectorAll('#intro .stagger')];
-const nums=[...document.querySelectorAll('#intro .num')];
-const io=new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(!entry.isIntersecting) return;
-// staggered content
-staged.forEach((el,i)=> setTimeout(()=>el.classList.add('show'), i*140));
-// counters (each has its own timer)
-nums.forEach(n=>{
-const end=+n.dataset.target;
-const start=0;
-/* CHANGED: faster numbers */
-const duration=1500; // faster than 2200ms
-const t0=performance.now();
-function step(now){
-const p=Math.min((now-t0)/duration,1);
-const eased=1-Math.pow(1-p,3); // easeOutCubic (same easing)
-n.textContent=String(Math.floor(start + eased*(end-start)));
-if(p<1) requestAnimationFrame(step); else n.textContent=end;
-}
-requestAnimationFrame(step);
-});
-io.disconnect();
-});
-},{threshold:.25});
-io.observe(document.querySelector('#intro'));
-
-/* Portfolio inner tabs + dropdown filter */
+/* Portfolio inner tabs + dropdown */
 const pills=[...document.querySelectorAll('.pill')];
 const projSelect=document.getElementById('projSelect');
 function showPortTab(name){
 document.getElementById('tab-projects').style.display=(name==='projects')?'':'none';
 document.getElementById('tab-certificates').style.display=(name==='certificates')?'':'none';
 document.getElementById('tab-skills').style.display=(name==='skills')?'':'none';
-projSelect.style.display = (name==='projects') ? 'inline-block':'none';
+if(projSelect) projSelect.style.display=(name==='projects')?'inline-block':'none';
 if(name==='projects'){ lazySetBG('#tab-projects .card-proj'); }
 if(name==='certificates'){ lazySetBG('#tab-certificates .card-cert'); }
 }
 pills.forEach(p=>p.addEventListener('click',()=>{ pills.forEach(x=>x.classList.remove('active')); p.classList.add('active'); showPortTab(p.dataset.tab); }));
 showPortTab('projects');
 
-/* filter by dropdown */
+if(projSelect){
 projSelect.addEventListener('change',()=>{
 const val=projSelect.value;
 document.querySelectorAll('#tab-projects .card-proj').forEach(c=>{
 c.style.display=(val==='all'||c.dataset.type===val)?'':'none';
 });
 });
-
-/* Helper: try to resolve image with or without extension (.png/.jpg/.jpeg) */
-function trySrc(base){
-const hasExt=/\.(png|jpg|jpeg|webp|gif)$/i.test(base);
-if(hasExt){ return [base]; }
-return [`${base}.png`,`${base}.jpg`,`${base}.jpeg`];
 }
+
+/* Lazy set background */
 function lazySetBG(selector){
 document.querySelectorAll(selector).forEach(el=>{
 if(el.dataset.__loaded) return;
-const base=el.getAttribute('data-img');
-const candidates=trySrc(base).map(s=>encodeURI(s));
-(function tryNext(i){
-if(i>=candidates.length){ return; }
-const url=candidates[i];
+const src=el.getAttribute('data-img');
 const img=new Image();
-img.onload=()=>{ el.style.backgroundImage=`url('${url}')`; el.dataset.__loaded="1"; };
-img.onerror=()=>tryNext(i+1);
-img.src=url;
-})(0);
+img.onload=()=>{ el.style.backgroundImage=`url('${src}')`; el.dataset.__loaded="1"; };
+img.src=src;
 });
 }
 
-/* Lightbox for Projects & Certificates */
-const lb=document.getElementById('lightbox'); const lbImg=lb.querySelector('img'); const lbClose=lb.querySelector('.close');
+/* Lightbox */
+(function(){
+const lb=document.getElementById('lightbox'); if(!lb) return;
+const lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.close');
 function openLB(src){ lb.style.display='flex'; lbImg.src=src; }
-function closeLB(){ lb.style.display='none'; lbImg.src=""; }
+function closeLB(){ lb.style.display='none'; lbImg.src=''; }
 lbClose.addEventListener('click',closeLB);
 lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
 window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLB(); });
-
-function attachLightbox(sel){
+function attach(sel){
 document.querySelectorAll(sel).forEach(card=>{
-card.addEventListener('click',()=>{
-const base=card.getAttribute('data-img'); const candidates=trySrc(base).map(s=>encodeURI(s));
-(function tryNext(i){
-if(i>=candidates.length){ return; }
-const url=candidates[i]; const img=new Image();
-img.onload=()=>openLB(url);
-img.onerror=()=>tryNext(i+1);
-img.src=url;
-})(0);
-});
+card.addEventListener('click',()=>{ openLB(card.getAttribute('data-img')); });
 });
 }
-attachLightbox('#tab-projects .card-proj');
-attachLightbox('#tab-certificates .card-cert');
+attach('#tab-projects .card-proj'); attach('#tab-certificates .card-cert');
+})();
 
-/* Softer mouse sparkle trail */
-let lastSpark=0;
-window.addEventListener('mousemove',e=>{
-const now=performance.now();
-if(now-lastSpark<24) return;
-lastSpark=now;
-const s=document.createElement('span');
-s.className='spark';
-s.style.left=(e.clientX-4)+'px';
-s.style.top=(e.clientY-4)+'px';
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),800);
+/* About: رجوع أنيميشن الاسم والمسّمى + عدّادات */
+(function aboutAnimations(){
+const about = document.getElementById('intro');
+if(!about) return;
+const nameEl = about.querySelector('.name');
+const roleEl = about.querySelector('.role');
+
+const io = new IntersectionObserver((entries)=>{
+entries.forEach(e=>{
+if(!e.isIntersecting) return;
+nameEl && nameEl.classList.add('show');
+roleEl && roleEl.classList.add('show');
+
+// counters
+const nums=[...about.querySelectorAll('.num')];
+nums.forEach(n=>{
+const end=+n.textContent.trim()||0;
+const start=0, duration=1500, t0=performance.now();
+function step(now){
+const p=Math.min((now-t0)/duration,1);
+const eased=1-Math.pow(1-p,3);
+n.textContent=String(Math.floor(start + eased*(end-start)));
+if(p<1) requestAnimationFrame(step); else n.textContent=end;
+}
+n.textContent='0';
+requestAnimationFrame(step);
 });
+
+io.disconnect();
+});
+},{threshold:.25});
+io.observe(about);
+})();
 </script>
 </body>
 </html>
