@@ -15,15 +15,13 @@
 html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:#3a2d25}
 a{color:inherit;text-decoration:none}
 
-/* Layout container (desktop default) */
+/* Layout */
 .wrap{max-width:1100px;margin:0 auto;padding:90px 20px 60px;position:relative;z-index:1}
-html.is-mobile .wrap{max-width:100%;padding:82px 14px 48px}
 
 /* Logo */
 #logo{position:fixed;top:18px;left:18px;width:160px;z-index:300;opacity:0;transform:translateY(-6px);
 transition:opacity .5s ease .1s,transform .5s ease .1s}
 #logo.show{opacity:1;transform:translateY(0)}
-html.is-mobile #logo{width:120px;left:10px;top:10px}
 
 /* Watermark */
 .watermark{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;display:flex;align-items:center;justify-content:center}
@@ -32,7 +30,6 @@ background:url('imags/Logo2.png') center/contain no-repeat;filter:grayscale(40%)
 
 /* Tabs */
 .tabs{display:flex;gap:10px;position:sticky;top:0;z-index:90;padding:6px 0;margin-left:160px}
-html.is-mobile .tabs{margin-left:110px}
 .tab{position:relative;background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgba(0,0,0,.08);
 padding:10px 16px;border-radius:12px;cursor:pointer;color:#2c221b;font-weight:800;overflow:hidden;
 transition:transform .22s,box-shadow .22s,background .22s;animation:menuIn .45s ease-out .7s forwards;opacity:0;transform:translateY(-8px)}
@@ -49,7 +46,7 @@ section{min-height:70vh;padding:36px 0}
 @keyframes hiMove{to{opacity:1;transform:translateY(0)}}
 #welcomeText{font-size:26px;letter-spacing:4px;color:#000;opacity:0;transform:translateX(80px);animation:welcomeSlide 1s ease-out 2.0s forwards}
 @keyframes welcomeSlide{to{opacity:1;transform:translateX(0)}}
-.dashboard{width:min(420px,92%);display:flex;justify-content:center;z-index:1;margin-top:72px}
+.dashboard{width:min(420px,92%);display:flex;justify-content:center;z-index:1;margin-top:68px}
 .bars{display:flex;align-items:end;gap:12px;height:160px;width:100%}
 .bar{width:16.5%;background:linear-gradient(180deg,var(--soft) 0%,var(--soft2) 100%);border-radius:12px;transform-origin:bottom center;animation:rise 3s infinite ease-in-out;
 box-shadow:0 8px 24px rgba(180,130,90,.18);position:relative;overflow:hidden}
@@ -112,15 +109,9 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 .ball{width:28px;height:28px;border-radius:50%;background:#e8dbc8;box-shadow:0 14px 42px rgba(150,120,90,.25)}
 .hidden{display:none!important}
 
-/* Responsive grid breakpoints */
-@media (max-width:900px){
-.grid{grid-template-columns:repeat(2,1fr)}
-#logo{width:140px}
-.tabs{margin-left:120px}
-}
-@media (max-width:640px){
-.grid{grid-template-columns:1fr}
-}
+/* Responsive */
+@media (max-width:900px){#logo{width:140px}.tabs{margin-left:120px}.grid{grid-template-columns:repeat(2,1fr)}#tab-skills .grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){#logo{width:120px;left:10px;top:10px}.tabs{margin-left:110px}.wrap{padding-top:92px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -147,7 +138,7 @@ background:linear-gradient(180deg,var(--sand),var(--sand2));border:1px solid rgb
 <section id="cover">
 <div id="hiTitle">Hi!</div>
 <div id="welcomeText">Welcome&nbsp;&nbsp;to&nbsp;&nbsp;my&nbsp;&nbsp;portfolio</div>
-<div class="dashboard" style="margin-top:68px">
+<div class="dashboard">
 <div class="bars">
 <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
 </div>
@@ -176,7 +167,7 @@ I love exploring new tools, technologies, and techniques and bring that curiosit
 Hold your breath and watch how data <strong class="accent-grad">transforms into decisions.</strong>
 </p>
 
-<!-- Download CV (with fallback to raw link) -->
+<!-- Download CV (with raw fallback) -->
 <a id="cvLink" class="btn-cv"
 href="imags/Areej%20Mansour%20Balharith.pdf"
 data-raw="https://raw.githubusercontent.com/areejmansour77-cpu/My-Portfolio/main/imags/Areej%20Mansour%20Balharith.pdf"
@@ -311,7 +302,7 @@ download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
 <p style="font-size:18px;margin:0 0 12px 0"><strong>For inquiries and opportunities</strong> — please connect via the links below. 🤝</p>
 <div class="contact-icons">
 <a class="cta" href="https://x.com/databyareej?s=21" target="_blank" aria-label="X (Twitter)">
-<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1.9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.5-1.6.8-2.5 1A3.7 3.7 0 0 0 12 7.7c0 .3 0 .6.1 .9-3-.1-5.7-1.6-7.5-3.9-.3.6-.5 1.2-.5 1.9 0 1.3.7 2.5 1.8 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.2 3 3.6-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.4 1.7 2.5 3.3 2.5A7.5 7.5 0 0 1 2 18c1.6 1 3.6 1.6 5.7 1.6 6.8 0 10.5-5.6 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8Z" fill="#111"/></svg>
 </a>
 <a class="cta" href="https://www.linkedin.com/in/areej-balharith-b60344260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn">
 <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4.98 3.5c0 1.2-.99 2.2-2.22 2.2A2.2 2.2 0 1 1 4.98 3.5zM3 8h4v12H3zM9 8h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.9 0 4.6 2.6 4.6 6v6h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H9z" fill="#111"/></svg>
@@ -330,22 +321,7 @@ download="Areej_Mansour_Balharith_CV.pdf">Download CV</a>
 </div>
 
 <script>
-/* Device class: adds is-mobile or is-desktop for fine control */
-(function setDeviceClass(){
-function apply(){
-if(window.matchMedia('(max-width: 640px)').matches){
-document.documentElement.classList.add('is-mobile');
-document.documentElement.classList.remove('is-desktop');
-}else{
-document.documentElement.classList.add('is-desktop');
-document.documentElement.classList.remove('is-mobile');
-}
-}
-apply();
-window.addEventListener('resize', apply);
-})();
-
-/* Intro logo / overlay */
+/* Intro overlay + logo reveal */
 setTimeout(function(){ var fx=document.getElementById('introFx'); if(fx) fx.classList.add('hidden'); },2400);
 window.addEventListener('load',function(){ setTimeout(function(){ var l=document.getElementById('logo'); if(l) l.classList.add('show'); },1400); });
 
@@ -369,7 +345,7 @@ showSection(t.dataset.target);
 });
 showSection('cover');
 
-/* Portfolio inner tabs + dropdown filter */
+/* Portfolio inner tabs + dropdown */
 const pills=[...document.querySelectorAll('.pill')];
 const projSelect=document.getElementById('projSelect');
 function showPortTab(name){
@@ -433,7 +409,7 @@ if(a) a.setAttribute('href', a.dataset.raw);
 }
 })();
 
-/* عدّادات الأرقام في About (ترجع الأنيميشن) */
+/* About counters animation */
 (function counters(){
 const section=document.getElementById('intro');
 if(!section) return;
@@ -446,11 +422,11 @@ if(!entry.isIntersecting) return;
 nums.forEach(n=>{
 const end=+n.textContent.trim()||0;
 const start=0;
-const duration=1500; // سريع ولطيف
+const duration=1500;
 const t0=performance.now();
 function step(now){
 const p=Math.min((now-t0)/duration,1);
-const eased=1-Math.pow(1-p,3); // easeOutCubic
+const eased=1-Math.pow(1-p,3);
 n.textContent=String(Math.floor(start + eased*(end-start)));
 if(p<1) requestAnimationFrame(step); else n.textContent=end;
 }
